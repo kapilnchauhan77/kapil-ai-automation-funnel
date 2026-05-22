@@ -807,37 +807,90 @@ textarea {
   background: var(--paper);
 }
 
+.process-section {
+  background: var(--paper);
+}
+
+.process-heading {
+  max-width: 850px;
+}
+
 .process-list {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1rem;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   list-style: none;
 }
 
+.process-list::before {
+  position: absolute;
+  top: 2rem;
+  right: 11%;
+  left: 11%;
+  height: 2px;
+  background: color-mix(in srgb, var(--blue) 32%, var(--line));
+  content: "";
+}
+
 .process-list li {
   position: relative;
-  min-height: 14rem;
-  padding: 1.25rem;
+  z-index: 1;
+  display: grid;
+  gap: 0.65rem;
+  min-height: 18rem;
+  padding: 1.15rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 94%, var(--blue-soft)), var(--surface) 58%),
+    var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--blue);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
 .process-list li:hover {
-  border-color: color-mix(in srgb, var(--blue) 32%, var(--line));
+  border-color: color-mix(in srgb, var(--blue) 36%, var(--line));
   box-shadow: var(--shadow);
   transform: translateY(-2px);
 }
 
-.process-list span {
+.process-list .step-number {
   display: grid;
   place-items: center;
-  width: 2.2rem;
+  width: 2.35rem;
   aspect-ratio: 1;
-  margin-bottom: 1rem;
   color: #fffdf8;
   background: var(--blue);
   border-radius: 8px;
+  box-shadow: 0 10px 24px rgba(53, 95, 127, 0.24);
+  font-weight: 900;
+}
+
+.process-list small {
+  color: var(--accent-strong);
+  font-size: 0.75rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.process-list strong {
+  font-size: 1.12rem;
+  line-height: 1.18;
+}
+
+.process-list em {
+  align-self: end;
+  display: block;
+  margin-top: 0.35rem;
+  padding-top: 0.75rem;
+  color: var(--blue);
+  border-top: 1px solid var(--line);
+  font-size: 0.86rem;
+  font-style: normal;
   font-weight: 900;
 }
 
@@ -919,6 +972,14 @@ textarea {
   .service-grid,
   .process-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .process-list::before {
+    display: none;
+  }
+
+  .process-list li {
+    min-height: 15.5rem;
   }
 
   .proof-grid {
