@@ -1,0 +1,16 @@
+{
+  "name": "kapil-ai-automation-funnel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page and audit request email backend for Kapil Chauhan's AI automation funnel.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "nodemailer": "^8.0.7"
+  }
+}
