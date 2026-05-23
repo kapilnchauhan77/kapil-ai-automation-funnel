@@ -9,6 +9,9 @@
       content="AI automation and custom software for businesses that want to reduce manual work, process documents faster, and scale operations with production-ready systems."
     >
     <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%23045646"/%3E%3Ctext x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="%23fffdf8"%3EKC%3C/text%3E%3C/svg%3E'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
@@ -46,10 +49,12 @@
           alt="A laptop workspace with an operations dashboard, documents, notes, and contact cards."
         >
         <div class="hero-shade" aria-hidden="true"></div>
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
         <div class="hero-content">
-          <div class="hero-copy-block">
-            <p class="eyebrow">AI automation and custom software</p>
-            <h1 id="hero-title">AI Automation & Custom Software for Businesses That Want to Scale Without Manual Chaos</h1>
+          <div class="hero-copy-block" data-reveal>
+            <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>AI automation &amp; custom software</p>
+            <h1 id="hero-title">AI Automation &amp; Custom Software for Businesses That Want to <span class="grad-text">Scale Without Manual Chaos</span></h1>
             <p class="hero-copy">
               I help growing companies automate repetitive workflows, process documents faster, build AI-powered internal tools, and reduce operational inefficiencies with practical, production-ready software systems.
             </p>
@@ -65,7 +70,7 @@
             </div>
           </div>
 
-          <aside class="hero-panel" aria-label="Automation audit snapshot">
+          <aside class="hero-panel" aria-label="Automation audit snapshot" data-reveal>
             <div class="panel-topline">
               <span>Audit output</span>
               <strong>ROI roadmap</strong>
