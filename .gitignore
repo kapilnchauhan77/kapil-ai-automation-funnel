@@ -2,4 +2,8 @@ node_modules/
 .env
 .DS_Store
 .playwright-cli/
+.playwright-mcp/
 output/
+leads/
+hero-after.png
+v*-*.png

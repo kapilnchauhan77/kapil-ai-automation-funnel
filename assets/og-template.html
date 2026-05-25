@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>OG card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #060805;
+      color: #fffdf6;
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+    .glow-a {
+      position: absolute;
+      inset: -10% auto auto -15%;
+      width: 60%;
+      aspect-ratio: 1;
+      background: radial-gradient(closest-side, rgba(13, 102, 80, 0.55), rgba(13, 102, 80, 0) 70%);
+      filter: blur(18px);
+    }
+    .glow-b {
+      position: absolute;
+      inset: auto -12% -18% auto;
+      width: 55%;
+      aspect-ratio: 1;
+      background: radial-gradient(closest-side, rgba(197, 75, 44, 0.32), rgba(197, 75, 44, 0) 70%);
+      filter: blur(20px);
+    }
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(243, 239, 226, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(243, 239, 226, 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at 65% 45%, rgba(0, 0, 0, 0.75), transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at 65% 45%, rgba(0, 0, 0, 0.75), transparent 70%);
+    }
+    .wrap {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .kc {
+      display: grid;
+      place-items: center;
+      width: 64px;
+      aspect-ratio: 1;
+      background: linear-gradient(135deg, #0d6650, #064233);
+      border-radius: 14px;
+      color: #fffdf6;
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-variation-settings: "opsz" 24, "SOFT" 100;
+      font-size: 30px;
+      letter-spacing: -0.03em;
+      box-shadow: 0 22px 48px -18px rgba(6, 66, 51, 0.55);
+    }
+    .mark-text strong {
+      display: block;
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-weight: 400;
+      font-variation-settings: "opsz" 36, "SOFT" 100;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.018em;
+      color: #fffdf6;
+    }
+    .mark-text small {
+      display: block;
+      margin-top: 6px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(243, 239, 226, 0.6);
+    }
+    h1 {
+      margin: 0;
+      max-width: 920px;
+      font-family: "Fraunces", serif;
+      font-weight: 350;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-size: 92px;
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      color: #fffdf6;
+    }
+    h1 em {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      color: #5fc9a6;
+    }
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      background: rgba(243, 239, 226, 0.06);
+      border: 1px solid rgba(243, 239, 226, 0.18);
+      border-radius: 999px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(243, 239, 226, 0.86);
+    }
+    .pill .dot {
+      width: 8px;
+      height: 8px;
+      background: #5fc9a6;
+      border-radius: 999px;
+      box-shadow: 0 0 0 3px rgba(95, 201, 166, 0.18);
+    }
+    .pill.hot {
+      background: rgba(197, 75, 44, 0.16);
+      border-color: rgba(197, 75, 44, 0.5);
+      color: #f5d8cb;
+    }
+    .pill.hot .dot { background: #c54b2c; box-shadow: 0 0 0 3px rgba(197, 75, 44, 0.22); }
+    .footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(243, 239, 226, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-a"></div>
+  <div class="glow-b"></div>
+  <div class="grid"></div>
+
+  <div class="wrap">
+    <div class="mark">
+      <span class="kc">KC</span>
+      <span class="mark-text">
+        <strong>Kapil Chauhan</strong>
+        <small>AI/ML Solution Architect</small>
+      </span>
+    </div>
+
+    <h1>AI automation for businesses ready to <em>scale without the manual chaos.</em></h1>
+
+    <div class="footer">
+      <div class="meta">
+        <span class="pill"><span class="dot"></span>Document intelligence</span>
+        <span class="pill"><span class="dot"></span>LLM workflows</span>
+        <span class="pill"><span class="dot"></span>Internal AI tools</span>
+        <span class="pill hot"><span class="dot"></span>Free 20-min audit</span>
+      </div>
+      <span class="tag">kapilnchauhan77.github.io/kapil-ai-automation-funnel</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Internal template used to render the OG card; not part of the live site.
+Disallow: /assets/og-template.html
+
+Sitemap: https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/sitemap.xml

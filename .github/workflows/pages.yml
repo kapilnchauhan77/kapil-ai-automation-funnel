@@ -27,9 +27,15 @@ jobs:
 
       - name: Prepare static artifact
         run: |
-          mkdir -p public
-          cp index.html styles.css script.js public/
-          cp -R assets public/assets
+          mkdir -p public/assets
+          cp index.html styles.css script.js robots.txt sitemap.xml public/
+          # Only ship referenced assets — skip the source PNG and OG template.
+          cp assets/audit-checklist.pdf \
+             assets/audit-checklist.html \
+             assets/og-image.png \
+             assets/outreach-hero.webp \
+             assets/outreach-hero.jpg \
+             public/assets/
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
