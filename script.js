@@ -9,7 +9,9 @@ const automationOutput = document.querySelector("#automationOutput");
 const annualSavings = document.querySelector("#annualSavings");
 const auditForm = document.querySelector("#auditForm");
 const formStatus = document.querySelector("#formStatus");
+const formSuccess = document.querySelector("#formSuccess");
 const submitButton = auditForm.querySelector("button[type='submit']");
+const formFields = auditForm.querySelectorAll("label, input, textarea, button[type='submit']");
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -154,8 +156,13 @@ async function handleFormSubmit(event) {
       throw new Error(result.message || "The request could not be sent.");
     }
 
-    formStatus.textContent = `Thanks, ${name}. Your audit request has been sent.`;
+    formStatus.textContent = "";
     auditForm.reset();
+    formFields.forEach((el) => { el.hidden = true; });
+    if (formSuccess) {
+      formSuccess.hidden = false;
+      formSuccess.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
   } catch (error) {
     formStatus.textContent = error.message || "The form could not send right now. Please email Kapil directly.";
   } finally {

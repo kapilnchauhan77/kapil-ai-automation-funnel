@@ -18,6 +18,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script>
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "audit", { origin: "https://cal.com" });
+      Cal.ns.audit("ui", {
+        cssVarsPerTheme: {
+          light: { "cal-brand": "#0d6650" },
+          dark: { "cal-brand": "#5fc9a6" },
+        },
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    </script>
   </head>
   <body>
     <header class="site-header" aria-label="Site header">
@@ -40,7 +52,7 @@
       <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
         <a href="#services">Services</a>
         <a href="#audit">Audit</a>
-        <a href="#proof">Proof</a>
+        <a href="#voices">Voices</a>
         <a href="#process">Process</a>
         <a class="nav-cta" href="#contact">Book audit</a>
       </nav>
@@ -306,9 +318,70 @@
         </div>
       </section>
 
+      <section class="section testimonials-section" id="voices" aria-labelledby="voices-title">
+        <div class="section-heading left">
+          <p class="chapter"><span class="chapter-num">§ 07</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Voices</span></p>
+          <h2 id="voices-title">What clients say after working <em>together.</em></h2>
+        </div>
+
+        <ul class="clients-roster" aria-label="Selected engagements">
+          <li>People Element</li>
+          <li>Laurastar</li>
+          <li>Shamrock Marketing</li>
+          <li>Sai Global Platform</li>
+          <li>Openprovider</li>
+          <li>Procys</li>
+          <li>ProFinda</li>
+          <li>Kore Labs</li>
+          <li>ShopSavvy</li>
+          <li>Flowlinker</li>
+          <li>Glassbox</li>
+          <li>TrialHaus</li>
+        </ul>
+
+        <div class="testimonial-grid">
+          <figure class="testimonial">
+            <blockquote>
+              <p>Kapil helped us clearly identify where AI automation could actually save time instead of just adding another tool. The workflow he suggested was practical, easy to understand, and directly tied to business value.</p>
+            </blockquote>
+            <figcaption>
+              <strong>Founder</strong>
+              <span>Provoke</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>
+              <p>Working with Kapil felt very different from working with a generic developer. He understood the business problem first, then designed the right automation around it.</p>
+            </blockquote>
+            <figcaption>
+              <strong>Operations Head</strong>
+              <span>Inperio</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>
+              <p>Kapil has a strong ability to simplify complex AI and software ideas into clear execution plans. Our call gave us immediate clarity on what to build, what to avoid, and where automation would create the highest ROI.</p>
+            </blockquote>
+            <figcaption>
+              <strong>Product Manager</strong>
+              <span>Mercer Mettl</span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote>
+              <p>We came in with a vague idea about using AI in our operations. Kapil helped us convert it into a structured roadmap with realistic priorities, tools, and implementation steps.</p>
+            </blockquote>
+            <figcaption>
+              <strong>Strategy Lead</strong>
+              <span>Orano Med</span>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
       <section class="section process-section" id="process" aria-labelledby="process-title">
         <div class="section-heading process-heading">
-          <p class="chapter"><span class="chapter-num">§ 07</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Process</span></p>
+          <p class="chapter"><span class="chapter-num">§ 08</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Process</span></p>
           <h2 id="process-title">From messy workflow to <em>working</em> automation system</h2>
           <p>
             A focused path from understanding the current operation to shipping a practical AI system your team can actually use.
@@ -357,7 +430,7 @@
       <section class="section markets-section" aria-labelledby="markets-title">
         <div class="split-layout">
           <div>
-            <p class="chapter"><span class="chapter-num">§ 08</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Best fit</span></p>
+            <p class="chapter"><span class="chapter-num">§ 09</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Best fit</span></p>
             <h2 id="markets-title">For document-heavy &amp; <em>operations-heavy</em> businesses.</h2>
             <p>
               The best clients have enough operational complexity to feel the pain, but not enough internal technical capacity to solve it properly.
@@ -381,8 +454,12 @@
       <section class="section contact-section" id="contact" aria-labelledby="contact-title">
         <div class="contact-layout">
           <div>
-            <p class="chapter chapter-light"><span class="chapter-num">§ 09</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Book the audit</span></p>
+            <p class="chapter chapter-light"><span class="chapter-num">§ 10</span><span class="chapter-rule" aria-hidden="true"></span><span class="chapter-label">Book the audit</span></p>
             <h2 id="contact-title">Find the workflows costing your business <em>time and money.</em></h2>
+            <p class="contact-direct">
+              Or skip the form &mdash;
+              <button class="cal-link" type="button" data-cal-namespace="audit" data-cal-link="kapil-chauhan-d4soda" data-cal-config='{"layout":"month_view"}'>book a 20-min call directly <span aria-hidden="true">→</span></button>
+            </p>
             <p>
               If your team spends hours every week on repetitive work, manual checks, documents, reporting, or disconnected tools, there is likely an automation opportunity worth exploring.
             </p>
@@ -413,6 +490,19 @@
               </svg>
             </button>
             <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+            <div class="form-success" id="formSuccess" hidden>
+              <p class="success-line">Thanks. Your audit request is in.</p>
+              <p class="success-sub">Want to talk now? Book a 20-min call and we'll review your workflow on the spot.</p>
+              <button class="button primary full-width" type="button" data-cal-namespace="audit" data-cal-link="kapil-chauhan-d4soda" data-cal-config='{"layout":"month_view"}'>
+                Book your audit call
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 12h14"></path>
+                  <path d="m13 6 6 6-6 6"></path>
+                </svg>
+              </button>
+              <p class="success-note">No call needed? I'll reply by email within 24 hours.</p>
+            </div>
           </form>
         </div>
       </section>
