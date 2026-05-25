@@ -43,7 +43,17 @@ function toggleNav() {
   navToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
 }
 
+function getWeb3FormsKey() {
+  const key = document.querySelector("meta[name='web3forms-access-key']")?.content?.trim();
+  if (!key || key === "YOUR_WEB3FORMS_ACCESS_KEY") return "";
+  return key;
+}
+
 function getAuditEndpoint() {
+  if (getWeb3FormsKey()) {
+    return "https://api.web3forms.com/submit";
+  }
+
   const configuredBase = window.AUDIT_API_BASE || document.querySelector("meta[name='audit-api-base']")?.content?.trim();
 
   if (configuredBase) {
@@ -59,6 +69,36 @@ function getAuditEndpoint() {
   }
 
   return "/api/audit-request";
+}
+
+function buildAuditPayload(formData) {
+  const key = getWeb3FormsKey();
+  const base = Object.fromEntries(formData.entries());
+
+  if (key) {
+    const name = (base.name || "there").toString().trim();
+    return {
+      access_key: key,
+      subject: `New AI Automation Audit request from ${name}`,
+      from_name: "Kapil Chauhan funnel",
+      replyto: base.email || "",
+      name: base.name || "",
+      email: base.email || "",
+      company: base.company || "",
+      workflow: base.workflow || "",
+      message: [
+        `Name: ${base.name || ""}`,
+        `Email: ${base.email || ""}`,
+        `Company: ${base.company || "—"}`,
+        "",
+        "Workflow:",
+        base.workflow || "",
+      ].join("\n"),
+      botcheck: "",
+    };
+  }
+
+  return base;
 }
 
 function openEmailFallback(formData) {
@@ -98,21 +138,23 @@ async function handleFormSubmit(event) {
   formStatus.textContent = "Sending your audit request...";
 
   try {
-    const response = await fetch(getAuditEndpoint(), {
+    const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Accept: "application/json",
       },
-      body: JSON.stringify(Object.fromEntries(formData.entries())),
+      body: JSON.stringify(buildAuditPayload(formData)),
     });
 
     const result = await response.json().catch(() => ({}));
+    const sent = response.ok && (result.success === true || result.ok === true);
 
-    if (!response.ok || !result.ok) {
+    if (!sent) {
       throw new Error(result.message || "The request could not be sent.");
     }
 
-    formStatus.textContent = result.message || `Thanks, ${name}. Your audit request has been sent.`;
+    formStatus.textContent = `Thanks, ${name}. Your audit request has been sent.`;
     auditForm.reset();
   } catch (error) {
     formStatus.textContent = error.message || "The form could not send right now. Please email Kapil directly.";

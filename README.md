@@ -30,10 +30,25 @@ GitHub Pages deploys only the static website files:
 - `script.js`
 - `assets/`
 
-GitHub Pages cannot run the Node SMTP backend. On the GitHub Pages version, the form opens an email draft fallback unless a hosted API URL is configured.
+GitHub Pages cannot run the Node SMTP backend. There are two ways to make the audit form actually deliver email from the deployed site:
 
-To use a hosted backend later, add this to `index.html` with your server URL:
+### Option A — Web3Forms (free, no server)
+
+1. Go to https://web3forms.com, enter your email, and you'll receive an `access_key` by mail.
+2. In `index.html`, find this tag and replace the placeholder:
+
+   ```html
+   <meta name="web3forms-access-key" content="YOUR_WEB3FORMS_ACCESS_KEY">
+   ```
+
+3. Commit and push. Submissions arrive in the inbox you registered with Web3Forms.
+
+### Option B — Host the Node backend yourself
+
+Deploy `server.js` somewhere that runs Node (Render, Railway, Fly.io, etc.) with your SMTP env vars, then point the static site at it:
 
 ```html
 <meta name="audit-api-base" content="https://your-backend-domain.com">
 ```
+
+When `web3forms-access-key` is set, it takes priority. If neither is configured and the site is on `github.io`, the form opens a `mailto:` draft as a fallback.
