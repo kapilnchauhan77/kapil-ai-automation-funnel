@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>The AI Automation Audit Checklist — Kapil Chauhan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    @page { size: A4; margin: 14mm 14mm 16mm; }
+
+    :root {
+      --ink: #0c0d0a;
+      --ink-2: #1a1c17;
+      --muted: #585a4f;
+      --paper: #f3efe2;
+      --paper-2: #ece6d3;
+      --surface: #fbf8ec;
+      --line: #d8d1ba;
+      --accent: #0d6650;
+      --accent-strong: #064233;
+      --accent-soft: #d8eae0;
+      --hot: #c54b2c;
+      --cream: #fffdf6;
+      --font-display: "Fraunces", "Iowan Old Style", Baskerville, serif;
+      --font-sans: "Instrument Sans", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 12px 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      font-size: 12.5px;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .doc {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .masthead {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.9rem;
+      border-bottom: 1px solid var(--ink);
+    }
+
+    .doc-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink);
+    }
+
+    .doc-mark .kc {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      aspect-ratio: 1;
+      color: var(--cream);
+      background: var(--accent-strong);
+      border-radius: 5px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 12px;
+    }
+
+    .doc-meta {
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: right;
+    }
+
+    .doc-title {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+      font-size: 38px;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin: 0 0 0.35rem;
+    }
+
+    .doc-title em {
+      font-style: italic;
+      font-variation-settings: "opsz" 144, "SOFT" 100;
+      color: var(--accent-strong);
+    }
+
+    .doc-sub {
+      max-width: 640px;
+      margin: 0 0 1rem;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    .doc-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 22px;
+    }
+
+    .section {
+      break-inside: avoid;
+    }
+
+    .section h2 {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      margin: 0 0 0.4rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-variation-settings: "opsz" 36, "SOFT" 50;
+      font-size: 16px;
+      line-height: 1.2;
+      letter-spacing: -0.012em;
+    }
+
+    .section h2 .num {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-strong);
+      padding: 2px 6px;
+      background: var(--accent-soft);
+      border-radius: 3px;
+      align-self: center;
+    }
+
+    .section .hint {
+      margin: 0 0 0.4rem;
+      font-size: 11.5px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .section ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .section li {
+      position: relative;
+      padding: 2.5px 0 2.5px 20px;
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: var(--ink-2);
+    }
+
+    .section li::before {
+      position: absolute;
+      top: 4px;
+      left: 0;
+      width: 12px;
+      height: 12px;
+      border: 1.2px solid var(--ink);
+      border-radius: 3px;
+      content: "";
+    }
+
+    .matrix {
+      margin: 0.35rem 0 0;
+      padding: 8px 10px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 10.5px;
+      line-height: 1.5;
+      color: var(--ink);
+    }
+
+    .matrix strong {
+      color: var(--hot);
+    }
+
+    .closer {
+      grid-column: span 2;
+      margin-top: 0.35rem;
+      padding: 12px 16px;
+      background: var(--ink);
+      color: var(--cream);
+      border-radius: 8px;
+    }
+
+    .closer h3 {
+      margin: 0 0 0.3rem;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-variation-settings: "opsz" 36, "SOFT" 80;
+      font-size: 17px;
+      letter-spacing: -0.014em;
+    }
+
+    .closer h3 em {
+      font-style: italic;
+      font-variation-settings: "opsz" 36, "SOFT" 100;
+      color: #5fc9a6;
+    }
+
+    .closer p {
+      margin: 0;
+      color: rgba(255, 253, 246, 0.86);
+      font-size: 11.5px;
+      line-height: 1.5;
+    }
+
+    .closer a {
+      color: #5fc9a6;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(95, 201, 166, 0.5);
+    }
+
+    .footer {
+      margin-top: 0.7rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    @media print {
+      body { padding: 0; background: var(--paper); }
+      .doc { padding: 0; }
+    }
+  </style>
+</head>
+<body>
+  <article class="doc">
+    <header class="masthead">
+      <div class="doc-mark">
+        <span class="kc">KC</span>
+        <span>Kapil Chauhan&nbsp;·&nbsp;AI/ML Solution Architect</span>
+      </div>
+      <div class="doc-meta">
+        Field guide&nbsp;·&nbsp;v1.0<br>
+        kapil.dev&nbsp;·&nbsp;cal.com/kapil-chauhan-d4soda
+      </div>
+    </header>
+
+    <h1 class="doc-title">The AI Automation <em>Audit Checklist.</em></h1>
+    <p class="doc-sub">
+      A 1-page self-audit to find the workflows in your business that AI can actually help &mdash;
+      and the ones where it&rsquo;s just another tool you don&rsquo;t need. Walk through the five steps
+      with one workflow in mind and you&rsquo;ll know whether it&rsquo;s worth automating before you spend a rupee.
+    </p>
+
+    <div class="doc-grid">
+      <section class="section">
+        <h2><span class="num">§ 01</span> Map the workflow</h2>
+        <p class="hint">Pick one painful workflow. Write down every step in order, including the silent ones (waiting on a person, switching tabs, copying data).</p>
+        <ul>
+          <li>Trigger &mdash; what kicks it off, and how often?</li>
+          <li>Hand-offs &mdash; who touches it, in what order?</li>
+          <li>Tools &mdash; which apps, sheets, inboxes, files are involved?</li>
+          <li>Output &mdash; what does &ldquo;done&rdquo; actually look like?</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">§ 02</span> Spot the friction</h2>
+        <p class="hint">Mark every step that has any of these markers. Each one is an automation candidate.</p>
+        <ul>
+          <li>The same data is retyped into more than one place.</li>
+          <li>Someone reads a document, then enters numbers into a system.</li>
+          <li>Approvals or follow-ups happen through email or chat.</li>
+          <li>The step exists only to check that a previous step was done.</li>
+          <li>Mistakes here are caught a week later, not at the source.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">§ 03</span> Score the opportunity</h2>
+        <p class="hint">For each candidate, multiply two things. The high-leverage ones jump out instantly.</p>
+        <div class="matrix">
+          <strong>Frequency</strong> &times; <strong>Cost per run</strong> = annual leak<br>
+          ex: 40 invoices/wk &times; 6 min &times; &#8377;500/hr<br>
+          = &#8377;1,04,000/yr just to retype invoices.<br>
+          Anything &gt; &#8377;3 lakh/yr is worth automating today.
+        </div>
+      </section>
+
+      <section class="section">
+        <h2><span class="num">§ 04</span> Sanity-check feasibility</h2>
+        <p class="hint">Before you build, confirm the boring stuff. AI projects fail here, not on the model.</p>
+        <ul>
+          <li>The input is already digital (or trivial to digitise).</li>
+          <li>There is enough volume to justify a system, not a person.</li>
+          <li>You can describe &ldquo;correct&rdquo; clearly enough to test it.</li>
+          <li>You have someone who can sign off the output for the first month.</li>
+          <li>The cost of a wrong answer is recoverable, not catastrophic.</li>
+        </ul>
+      </section>
+
+      <section class="section" style="grid-column: span 2;">
+        <h2><span class="num">§ 05</span> Pick the first one to automate</h2>
+        <p class="hint">If more than one workflow passes §03 + §04, choose by these tie-breakers, in order:</p>
+        <ul>
+          <li>The one your highest-paid people spend the most time on.</li>
+          <li>The one whose errors most often reach customers or auditors.</li>
+          <li>The one whose data already flows through a system you own.</li>
+          <li>The one you can ship in 4 weeks, not 4 months.</li>
+        </ul>
+      </section>
+
+      <aside class="closer">
+        <h3>Want me to do this audit <em>for you?</em></h3>
+        <p>
+          Book a free 20-minute call and I&rsquo;ll walk one of your workflows through this framework on the spot &mdash;
+          no slides, no pitch. If it makes sense to dig deeper, the full audit ships in 7 days as a PDF + walkthrough.
+          <br>
+          <a href="https://cal.com/kapil-chauhan-d4soda">cal.com/kapil-chauhan-d4soda</a>&nbsp;&middot;&nbsp;
+          <a href="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/">the funnel</a>
+        </p>
+      </aside>
+    </div>
+
+    <footer class="footer">
+      <span>&copy; Kapil Chauhan&nbsp;&middot; AI automation &amp; custom software</span>
+      <span>Field guide&nbsp;&middot; v1.0&nbsp;&middot; 2026</span>
+    </footer>
+  </article>
+</body>
+</html>
