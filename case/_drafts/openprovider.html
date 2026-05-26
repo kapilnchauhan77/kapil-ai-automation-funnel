@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Openprovider — How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing. | Kapil Chauhan</title>
+    <meta name="description" content="How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing with CrossCheck — a multi-source matching engine on top of MySQL ETL + WHMCS data.">
+    <meta name="author" content="Kapil Chauhan">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="theme-color" content="#0a0a09">
+    <link rel="canonical" href="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/openprovider.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Kapil Chauhan — AI Automation">
+    <meta property="og:title" content="Openprovider — How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing.">
+    <meta property="og:description" content="How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing with CrossCheck — a multi-source matching engine on top of MySQL ETL + WHMCS data.">
+    <meta property="og:url" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/openprovider.html">
+    <meta property="og:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:author" content="Kapil Chauhan">
+    <meta property="article:published_time" content="2026-05-26">
+    <meta property="article:section" content="Case study">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Openprovider — How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing.">
+    <meta name="twitter:description" content="How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing with CrossCheck — a multi-source matching engine on top of MySQL ETL + WHMCS data.">
+    <meta name="twitter:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
+
+    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%23045646"/%3E%3Ctext x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="%23fffdf8"%3EKC%3C/text%3E%3C/svg%3E'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/" },
+            { "@type": "ListItem", "position": 2, "name": "Case studies",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/#proof" },
+            { "@type": "ListItem", "position": 3, "name": "Openprovider",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/openprovider.html" }
+          ]
+        },
+        {
+          "@type": "Article",
+          "headline": "Openprovider — How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing.",
+          "description": "How Openprovider reconciled 100k+ invoice lines a month across supplier and customer billing with CrossCheck — a multi-source matching engine on top of MySQL ETL + WHMCS data.",
+          "datePublished": "2026-05-26",
+          "author": {
+            "@type": "Person",
+            "name": "Kapil Chauhan",
+            "url": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/"
+          },
+          "publisher": {
+            "@type": "Person",
+            "name": "Kapil Chauhan"
+          },
+          "articleSection": "Case study",
+          "image": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png",
+          "mainEntityOfPage": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/openprovider.html"
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <!--
+      VERIFY before publishing — these numeric claims were drafted as
+      conservative directional estimates. Swap any that are inaccurate
+      and delete the lines you've confirmed.
+
+        - 100k+ invoice lines / month — confirm against actual monthly volume
+        - 92% auto-match rate — confirm against the latest tiered-match evaluation
+        - Days → minutes reconciliation cycle — confirm against the previous cycle's actual duration
+    -->
+
+    <header class="site-header" aria-label="Site header">
+      <a class="brand" href="../" aria-label="Kapil Chauhan home">
+        <span class="brand-mark" aria-hidden="true">KC</span>
+        <span class="brand-text">
+          <strong>Kapil Chauhan</strong>
+          <small><span aria-hidden="true">→</span> AI/ML Solution Architect</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path>
+        </svg>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+        <a href="../#services">Services</a>
+        <a href="../#audit">Audit</a>
+        <a href="../#voices">Voices</a>
+        <a href="../#process">Process</a>
+        <a class="nav-cta" href="../#contact">Book audit</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <article class="case">
+        <header class="case-hero">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../">Home</a>
+            <span aria-hidden="true">›</span>
+            <a href="../#proof">Case studies</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Openprovider</span>
+          </nav>
+
+          <p class="chapter">
+            <span class="chapter-num">§ Case</span>
+            <span class="chapter-rule" aria-hidden="true"></span>
+            <span class="chapter-label">Domain billing & reconciliation</span>
+          </p>
+          <h1 class="case-title">How Openprovider reconciled <em>100k+ invoice lines</em> a month across supplier and customer billing.</h1>
+
+          <p class="case-subtitle">A multi-source invoice-reconciliation engine that matches supplier billing, customer invoices, WHMCS data, and domain provisioning events in a single pass.</p>
+        </header>
+        <aside class="case-meta" aria-label="Engagement metadata">
+          <div><dt>Client</dt><dd>Openprovider</dd></div>
+          <div><dt>Industry</dt><dd>Domain billing & reconciliation</dd></div>
+          <div><dt>Year</dt><dd>2023</dd></div>
+          <div><dt>Engagement</dt><dd>Custom build</dd></div>
+          <div><dt>Role</dt><dd>AI/ML Solution Architect</dd></div>
+        </aside>
+        <section class="case-metrics" aria-label="Outcome metrics">
+          <div>
+            <strong>100k+</strong>
+            <span>invoice lines reconciled / month</span>
+          </div>
+          <div>
+            <strong>92%</strong>
+            <span>auto-match rate</span>
+          </div>
+          <div>
+            <strong>days → minutes</strong>
+            <span>reconciliation cycle</span>
+          </div>
+        </section>
+
+        <div class="case-body">
+          <h2>The problem</h2>
+          <p>Openprovider's billing stretches across supplier invoices, customer invoices, WHMCS, and the MySQL ETL layer behind domain registrar operations. Each month the accounting team reconciled thousands of supplier invoice lines against customer invoices, domain renewals, and registrar billing — a manual process that took days and quietly let late catches slip through.</p>
+          <p>The complication wasn't volume alone. It was that supplier and customer line items rarely matched exactly. Names varied, currencies converted at different points, dates shifted by days. Off-the-shelf reconciliation tools assumed clean keys; the real data didn't have them.</p>
+
+          <h2>What I built</h2>
+          <p>I built CrossCheck — a multi-source reconciliation engine that ingests supplier invoices, customer invoices, WHMCS billing, domain provisioning events, and the MySQL ETL layer, then matches lines using a tiered strategy: exact key → semantic + numeric tolerance → context-aware fallback → human-routed exception.</p>
+          <ul class="case-bullets">
+            <li>ETL pipeline from MySQL + WHMCS + parsed invoice PDFs into a unified reconciliation table.</li>
+            <li>Tiered matching: exact → fuzzy → context-aware → exception, every match carrying a confidence score.</li>
+            <li>Domain billing reconciliation across supplier and customer sides, including pro-rata splits and currency conversions.</li>
+            <li>Exception dashboard showing the finance team only what humans actually need to resolve.</li>
+          </ul>
+
+          <h2>The outcome</h2>
+          <p>The reconciliation cycle compressed from days to minutes. 92% of invoice lines auto-match on first run; the remaining 8% are routed to the finance team with full context attached.</p>
+          <p>CrossCheck started surfacing discrepancies that previously slipped through under deadline pressure. The team's hours now go to resolving exceptions, not to the bulk of matching itself.</p>
+
+          <h2>Tech stack</h2>
+          <div class="case-stack" aria-label="Tech stack">
+            <span>Python</span>
+            <span>FastAPI</span>
+            <span>MySQL</span>
+            <span>Pandas</span>
+            <span>Celery</span>
+            <span>Redis</span>
+          </div>
+        </div>
+
+        <section class="case-cta">
+          <p class="chapter chapter-light">
+            <span class="chapter-num">§ Next</span>
+            <span class="chapter-rule" aria-hidden="true"></span>
+            <span class="chapter-label">Your turn</span>
+          </p>
+          <h2>Want a <em>similar result</em> for your team?</h2>
+          <p>
+            Book a free 20-minute AI Automation Audit and walk one of your
+            workflows through the same framework. No slides, no pitch &mdash;
+            just a working diagnosis of where automation belongs in your
+            operation.
+          </p>
+          <a class="button primary" href="../#contact">
+            Book the audit
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span class="footer-mark"><span class="brand-mark sm" aria-hidden="true">KC</span> <em>Kapil Chauhan</em></span>
+      <span class="footer-mono">© 2026 · Built &amp; deployed by hand</span>
+      <a href="#top" class="footer-top">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>

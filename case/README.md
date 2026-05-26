@@ -5,9 +5,41 @@ Each file in this folder becomes a published case-study page at
 
 The deploy workflow ships every `case/*.html` **except files starting
 with `_`** — so `_template.html` stays in the repo as your master
-template and never goes live.
+template and never goes live. Files inside `_drafts/` also never ship.
 
-## Workflow to publish a new case study
+## Layout
+
+```
+case/
+├── README.md              ← this file
+├── _template.html         ← master template (never publishes)
+├── _drafts/               ← generated drafts, none publish
+│   ├── _generate.py       ← regenerate all drafts at once
+│   ├── procys.html
+│   ├── openprovider.html
+│   └── …
+└── <slug>.html            ← published case studies live here
+```
+
+## Two ways to ship a case study
+
+**A. From a draft in `_drafts/` (fastest — 11 are already drafted):**
+
+```sh
+# Review the draft locally:
+#   open it in your editor; verify every line in the <!-- VERIFY: --> block
+#   at the top of the file is true, and swap any numbers that aren't.
+
+# Then publish by moving it up:
+mv case/_drafts/<slug>.html case/<slug>.html
+
+# Append to the sitemap (see snippet below), then:
+git add case/<slug>.html sitemap.xml
+git commit -m "Publish <Client> case study"
+git push
+```
+
+**B. From scratch using the template:**
 
 1. Copy the template:
 
@@ -77,3 +109,18 @@ template and never goes live.
 - **Inbound links matter.** Once a case is live, link to it from the
   main page's Voices section so it gets discovered by both crawlers
   and humans.
+
+## Regenerating the drafts
+
+The 11 starter drafts in `_drafts/` were stamped out by
+`_drafts/_generate.py`, which has the case data inline. If you want to
+edit a draft's content at the source (rather than after publishing),
+edit the relevant `case(slug=..., ...)` entry in `_generate.py` and
+re-run:
+
+```sh
+python3 case/_drafts/_generate.py
+```
+
+This overwrites every file in `_drafts/`. It does **not** touch
+published case studies in `case/<slug>.html`.

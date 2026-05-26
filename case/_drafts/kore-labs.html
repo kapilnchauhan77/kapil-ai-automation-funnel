@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Kore Labs — How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vector Search. | Kapil Chauhan</title>
+    <meta name="description" content="How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vertex Vector Search — 10× throughput on varied-format document transformation with human-in-the-loop review.">
+    <meta name="author" content="Kapil Chauhan">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="theme-color" content="#0a0a09">
+    <link rel="canonical" href="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/kore-labs.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Kapil Chauhan — AI Automation">
+    <meta property="og:title" content="Kore Labs — How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vector Search.">
+    <meta property="og:description" content="How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vertex Vector Search — 10× throughput on varied-format document transformation with human-in-the-loop review.">
+    <meta property="og:url" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/kore-labs.html">
+    <meta property="og:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:author" content="Kapil Chauhan">
+    <meta property="article:published_time" content="2026-05-26">
+    <meta property="article:section" content="Case study">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kore Labs — How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vector Search.">
+    <meta name="twitter:description" content="How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vertex Vector Search — 10× throughput on varied-format document transformation with human-in-the-loop review.">
+    <meta name="twitter:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
+
+    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%23045646"/%3E%3Ctext x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="%23fffdf8"%3EKC%3C/text%3E%3C/svg%3E'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/" },
+            { "@type": "ListItem", "position": 2, "name": "Case studies",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/#proof" },
+            { "@type": "ListItem", "position": 3, "name": "Kore Labs",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/kore-labs.html" }
+          ]
+        },
+        {
+          "@type": "Article",
+          "headline": "Kore Labs — How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vector Search.",
+          "description": "How Kore Labs built an AI document-mapping pipeline on GPT-5 + Vertex Vector Search — 10× throughput on varied-format document transformation with human-in-the-loop review.",
+          "datePublished": "2026-05-26",
+          "author": {
+            "@type": "Person",
+            "name": "Kapil Chauhan",
+            "url": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/"
+          },
+          "publisher": {
+            "@type": "Person",
+            "name": "Kapil Chauhan"
+          },
+          "articleSection": "Case study",
+          "image": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png",
+          "mainEntityOfPage": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/kore-labs.html"
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <!--
+      VERIFY before publishing — these numeric claims were drafted as
+      conservative directional estimates. Swap any that are inaccurate
+      and delete the lines you've confirmed.
+
+        - 10× mapping throughput — confirm against the documents/hour before and after
+        - 94% field-level mapping accuracy — confirm against the evaluation set
+        - Days → hours per document set — confirm against a real before/after sample
+    -->
+
+    <header class="site-header" aria-label="Site header">
+      <a class="brand" href="../" aria-label="Kapil Chauhan home">
+        <span class="brand-mark" aria-hidden="true">KC</span>
+        <span class="brand-text">
+          <strong>Kapil Chauhan</strong>
+          <small><span aria-hidden="true">→</span> AI/ML Solution Architect</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path>
+        </svg>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+        <a href="../#services">Services</a>
+        <a href="../#audit">Audit</a>
+        <a href="../#voices">Voices</a>
+        <a href="../#process">Process</a>
+        <a class="nav-cta" href="../#contact">Book audit</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <article class="case">
+        <header class="case-hero">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../">Home</a>
+            <span aria-hidden="true">›</span>
+            <a href="../#proof">Case studies</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Kore Labs</span>
+          </nav>
+
+          <p class="chapter">
+            <span class="chapter-num">§ Case</span>
+            <span class="chapter-rule" aria-hidden="true"></span>
+            <span class="chapter-label">Document intelligence</span>
+          </p>
+          <h1 class="case-title">How Kore Labs built an <em>AI document-mapping pipeline</em> on GPT-5 + Vector Search.</h1>
+
+          <p class="case-subtitle">A multi-stage pipeline that ingests varied document formats, maps them to clean target schemas via vector-first matching, and routes only edge cases through a human review UI.</p>
+        </header>
+        <aside class="case-meta" aria-label="Engagement metadata">
+          <div><dt>Client</dt><dd>Kore Labs</dd></div>
+          <div><dt>Industry</dt><dd>Document intelligence</dd></div>
+          <div><dt>Year</dt><dd>2024</dd></div>
+          <div><dt>Engagement</dt><dd>Custom build</dd></div>
+          <div><dt>Role</dt><dd>AI/ML Solution Architect</dd></div>
+        </aside>
+        <section class="case-metrics" aria-label="Outcome metrics">
+          <div>
+            <strong>10×</strong>
+            <span>mapping throughput</span>
+          </div>
+          <div>
+            <strong>94%</strong>
+            <span>field-level mapping accuracy</span>
+          </div>
+          <div>
+            <strong>days → hours</strong>
+            <span>per document set</span>
+          </div>
+        </section>
+
+        <div class="case-body">
+          <h2>The problem</h2>
+          <p>Kore Labs needed to ingest documents in wildly varied formats — PDFs, spreadsheets, structured exports from third-party tools — and map them to clean target schemas. The kind of mapping that's trivial when documents are uniform, and impossible when they aren't. The team was bottlenecked at human-level transformation work that didn't scale.</p>
+          <p>Traditional ETL tooling required hand-coded mappings per source. With dozens of sources and each one drifting over time, engineering cost was eating the margin.</p>
+
+          <h2>What I built</h2>
+          <p>I built a multi-stage transformation pipeline: Angular + Node.js frontend for human-in-the-loop review, Python / FastAPI / LangChain orchestration for the AI mapping itself, and Cloud Run + GCS for batch scale. The mapping engine uses Vertex Vector Search to find the closest prior mapping for similar fields first, then falls back to GPT-5 only when there's no prior match.</p>
+          <ul class="case-bullets">
+            <li>Angular + Node.js frontend for human-in-the-loop mapping review and approval.</li>
+            <li>Python / FastAPI / LangChain orchestration with structured Pandas outputs.</li>
+            <li>Vector Search over historical mappings — new fields are matched to similar prior ones first; GPT-5 only handles unknowns.</li>
+            <li>Cloud Run + GCS for scaling out batches without paying for idle capacity.</li>
+          </ul>
+
+          <h2>The outcome</h2>
+          <p>Document-transformation throughput jumped roughly 10× over the previous hand-mapped flow. Engineers spend their time on edge cases and pipeline expansion, not on per-document coding.</p>
+          <p>Field-level mapping accuracy landed at 94%, with the rest routed through the review UI. The vector-first matching strategy means accuracy improves over time without retraining — every approved mapping becomes a new lookup target.</p>
+
+          <h2>Tech stack</h2>
+          <div class="case-stack" aria-label="Tech stack">
+            <span>Angular</span>
+            <span>FastAPI</span>
+            <span>LangChain</span>
+            <span>OpenAI GPT-5</span>
+            <span>Vector Search</span>
+            <span>Cloud Run</span>
+          </div>
+        </div>
+
+        <section class="case-cta">
+          <p class="chapter chapter-light">
+            <span class="chapter-num">§ Next</span>
+            <span class="chapter-rule" aria-hidden="true"></span>
+            <span class="chapter-label">Your turn</span>
+          </p>
+          <h2>Want a <em>similar result</em> for your team?</h2>
+          <p>
+            Book a free 20-minute AI Automation Audit and walk one of your
+            workflows through the same framework. No slides, no pitch &mdash;
+            just a working diagnosis of where automation belongs in your
+            operation.
+          </p>
+          <a class="button primary" href="../#contact">
+            Book the audit
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span class="footer-mark"><span class="brand-mark sm" aria-hidden="true">KC</span> <em>Kapil Chauhan</em></span>
+      <span class="footer-mono">© 2026 · Built &amp; deployed by hand</span>
+      <a href="#top" class="footer-top">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
