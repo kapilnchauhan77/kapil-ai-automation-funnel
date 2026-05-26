@@ -1434,13 +1434,18 @@ textarea {
   align-items: baseline;
   justify-content: flex-start;
   gap: 0.4rem 1.2rem;
-  margin: 0 auto 3rem;
+  margin: 0 auto 0.85rem;
   padding: 1.4rem 1.6rem;
   background: var(--ink);
   color: var(--cream);
   border-radius: var(--radius-lg);
   list-style: none;
   box-shadow: var(--shadow);
+}
+
+/* When the roster isn't followed by a hint, restore the larger gap. */
+.clients-roster:not(:has(+ .roster-hint)) {
+  margin-bottom: 3rem;
 }
 
 .clients-roster::before {
@@ -1483,6 +1488,33 @@ textarea {
 
 .clients-roster li:hover {
   color: var(--accent-glow);
+}
+
+.clients-roster li a {
+  color: inherit;
+  border-bottom: 1px dashed transparent;
+  transition: color 200ms var(--ease), border-color 200ms var(--ease);
+}
+
+.clients-roster li a:hover,
+.clients-roster li a:focus-visible {
+  color: var(--accent-glow);
+  border-bottom-color: color-mix(in srgb, var(--accent-glow) 60%, transparent);
+}
+
+.roster-hint {
+  max-width: 880px;
+  margin: 0.85rem auto 3rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.roster-hint span {
+  color: var(--accent);
+  margin-right: 0.35rem;
 }
 
 .testimonial-grid {
