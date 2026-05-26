@@ -10,8 +10,8 @@ const annualSavings = document.querySelector("#annualSavings");
 const auditForm = document.querySelector("#auditForm");
 const formStatus = document.querySelector("#formStatus");
 const formSuccess = document.querySelector("#formSuccess");
-const submitButton = auditForm.querySelector("button[type='submit']");
-const formFields = auditForm.querySelectorAll("label, input, textarea, button[type='submit']");
+const submitButton = auditForm?.querySelector("button[type='submit']") ?? null;
+const formFields = auditForm?.querySelectorAll("label, input, textarea, button[type='submit']") ?? [];
 
 const currencyFormatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -170,17 +170,22 @@ async function handleFormSubmit(event) {
   }
 }
 
-[hoursRange, costRange, automationRange].forEach((control) => {
-  control.addEventListener("input", updateEstimator);
-});
+if (hoursRange && costRange && automationRange) {
+  [hoursRange, costRange, automationRange].forEach((control) => {
+    control.addEventListener("input", updateEstimator);
+  });
+  updateEstimator();
+}
 
-navToggle.addEventListener("click", toggleNav);
-primaryNav.addEventListener("click", (event) => {
-  if (event.target instanceof HTMLAnchorElement) {
-    closeNav();
-  }
-});
+if (navToggle && primaryNav) {
+  navToggle.addEventListener("click", toggleNav);
+  primaryNav.addEventListener("click", (event) => {
+    if (event.target instanceof HTMLAnchorElement) {
+      closeNav();
+    }
+  });
+}
 
-auditForm.addEventListener("submit", handleFormSubmit);
-
-updateEstimator();
+if (auditForm) {
+  auditForm.addEventListener("submit", handleFormSubmit);
+}

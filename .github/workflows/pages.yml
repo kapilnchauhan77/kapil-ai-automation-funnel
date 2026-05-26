@@ -27,7 +27,7 @@ jobs:
 
       - name: Prepare static artifact
         run: |
-          mkdir -p public/assets
+          mkdir -p public/assets public/case
           cp index.html styles.css script.js robots.txt sitemap.xml public/
           # Only ship referenced assets — skip the source PNG and OG template.
           cp assets/audit-checklist.pdf \
@@ -36,6 +36,15 @@ jobs:
              assets/outreach-hero.webp \
              assets/outreach-hero.jpg \
              public/assets/
+          # Publish every case study HTML except files starting with `_`
+          # (the master template stays in the repo, never ships).
+          shopt -s nullglob
+          for f in case/*.html; do
+            name=$(basename "$f")
+            if [[ "$name" != _* ]]; then
+              cp "$f" "public/case/$name"
+            fi
+          done
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

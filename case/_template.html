@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--
+      ╔══════════════════════════════════════════════════════════════════════╗
+      ║  Case study template.                                                ║
+      ║                                                                       ║
+      ║  To publish a new case study:                                         ║
+      ║    1. Copy this file to case/<slug>.html (e.g. case/procys.html).    ║
+      ║    2. Open in your editor and do a global Find & Replace for every   ║
+      ║       {{PLACEHOLDER}} in the file.                                    ║
+      ║    3. Append the new URL to ../sitemap.xml.                           ║
+      ║    4. Push.                                                           ║
+      ║                                                                       ║
+      ║  All placeholders use {{UPPER_SNAKE}} so a single Find All ▸         ║
+      ║  Replace All on each token does it.                                   ║
+      ╚══════════════════════════════════════════════════════════════════════╝
+    -->
+
+    <title>{{CLIENT_NAME}} — {{HEADLINE_PLAIN}} | Kapil Chauhan</title>
+    <meta name="description" content="{{META_DESCRIPTION}}">
+    <meta name="author" content="Kapil Chauhan">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="theme-color" content="#0a0a09">
+    <link rel="canonical" href="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/{{CASE_SLUG}}.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Kapil Chauhan — AI Automation">
+    <meta property="og:title" content="{{CLIENT_NAME}} — {{HEADLINE_PLAIN}}">
+    <meta property="og:description" content="{{META_DESCRIPTION}}">
+    <meta property="og:url" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/{{CASE_SLUG}}.html">
+    <meta property="og:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="article:author" content="Kapil Chauhan">
+    <meta property="article:published_time" content="{{PUBLISH_DATE}}">
+    <meta property="article:section" content="Case study">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{CLIENT_NAME}} — {{HEADLINE_PLAIN}}">
+    <meta name="twitter:description" content="{{META_DESCRIPTION}}">
+    <meta name="twitter:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
+
+    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%23045646"/%3E%3Ctext x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="%23fffdf8"%3EKC%3C/text%3E%3C/svg%3E'>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+
+    <!-- Structured data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/" },
+            { "@type": "ListItem", "position": 2, "name": "Case studies",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/#proof" },
+            { "@type": "ListItem", "position": 3, "name": "{{CLIENT_NAME}}",
+              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/{{CASE_SLUG}}.html" }
+          ]
+        },
+        {
+          "@type": "Article",
+          "headline": "{{CLIENT_NAME}} — {{HEADLINE_PLAIN}}",
+          "description": "{{META_DESCRIPTION}}",
+          "datePublished": "{{PUBLISH_DATE}}",
+          "author": {
+            "@type": "Person",
+            "name": "Kapil Chauhan",
+            "url": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/"
+          },
+          "publisher": {
+            "@type": "Person",
+            "name": "Kapil Chauhan"
+          },
+          "articleSection": "Case study",
+          "image": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png",
+          "mainEntityOfPage": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/{{CASE_SLUG}}.html"
+        }
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <header class="site-header" aria-label="Site header">
+      <a class="brand" href="../" aria-label="Kapil Chauhan home">
+        <span class="brand-mark" aria-hidden="true">KC</span>
+        <span class="brand-text">
+          <strong>Kapil Chauhan</strong>
+          <small><span aria-hidden="true">→</span> AI/ML Solution Architect</small>
+        </span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path>
+        </svg>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+        <a href="../#services">Services</a>
+        <a href="../#audit">Audit</a>
+        <a href="../#voices">Voices</a>
+        <a href="../#process">Process</a>
+        <a class="nav-cta" href="../#contact">Book audit</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <article class="case">
+        <header class="case-hero">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../">Home</a>
+            <span aria-hidden="true">›</span>
+            <a href="../#proof">Case studies</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{{CLIENT_NAME}}</span>
+          </nav>
+
+          <p class="chapter">
+            <span class="chapter-num">§ Case</span>
+            <span class="chapter-rule" aria-hidden="true"></span>
+            <span class="chapter-label">{{INDUSTRY}}</span>
+          </p>
+
+          <!--
+            HEADLINE: Wrap the most-load-bearing phrase in <em> for the
+            italic-serif emphasis swap. Keep it concrete, not corporate.
+            Example: "How Procys cut <em>per-invoice handling time</em> from
+            12 minutes to 90 seconds."
+          -->
+          <h1 class="case-title">{{HEADLINE_HTML}}</h1>
+
+          <p class="case-subtitle">{{SUBTITLE}}</p>
+        </header>
+
+        <!-- Metadata strip — client / industry / year / engagement / role -->
+        <aside class="case-meta" aria-label="Engagement metadata">
+          <div><dt>Client</dt><dd>{{CLIENT_NAME}}</dd></div>
+          <div><dt>Industry</dt><dd>{{INDUSTRY}}</dd></div>
+          <div><dt>Year</dt><dd>{{YEAR}}</dd></div>
+          <div><dt>Engagement</dt><dd>{{ENGAGEMENT_TYPE}}</dd></div>
+          <div><dt>Role</dt><dd>{{ROLE}}</dd></div>
+        </aside>
+
+        <!-- Three headline metrics. Each one should be a hard, defensible
+             number. If you only have two, drop the third <div>. -->
+        <section class="case-metrics" aria-label="Outcome metrics">
+          <div>
+            <strong>{{METRIC_1_VALUE}}</strong>
+            <span>{{METRIC_1_LABEL}}</span>
+          </div>
+          <div>
+            <strong>{{METRIC_2_VALUE}}</strong>
+            <span>{{METRIC_2_LABEL}}</span>
+          </div>
+          <div>
+            <strong>{{METRIC_3_VALUE}}</strong>
+            <span>{{METRIC_3_LABEL}}</span>
+          </div>
+        </section>
+
+        <div class="case-body">
+          <h2>The problem</h2>
+          <p>{{PROBLEM_P1}}</p>
+          <p>{{PROBLEM_P2}}</p>
+
+          <h2>What I built</h2>
+          <p>{{SOLUTION_P1}}</p>
+          <ul class="case-bullets">
+            <li>{{SOLUTION_BULLET_1}}</li>
+            <li>{{SOLUTION_BULLET_2}}</li>
+            <li>{{SOLUTION_BULLET_3}}</li>
+            <li>{{SOLUTION_BULLET_4}}</li>
+          </ul>
+
+          <h2>The outcome</h2>
+          <p>{{OUTCOME_P1}}</p>
+          <p>{{OUTCOME_P2}}</p>
+
+          <h2>Tech stack</h2>
+          <!-- Tech-stack chips. Free-form — add or remove <span> tags. -->
+          <div class="case-stack" aria-label="Tech stack">
+            <span>{{TECH_1}}</span>
+            <span>{{TECH_2}}</span>
+            <span>{{TECH_3}}</span>
+            <span>{{TECH_4}}</span>
+            <span>{{TECH_5}}</span>
+            <span>{{TECH_6}}</span>
+          </div>
+        </div>
+
+        <!--
+          PULL QUOTE — optional but high-impact. Delete the whole <section>
+          if there's no quote on file. Use a real attributed quote where
+          possible; placeholder "anonymized" attributions read as weak.
+        -->
+        <section class="case-quote">
+          <blockquote>
+            <p>{{QUOTE_TEXT}}</p>
+          </blockquote>
+          <footer>
+            <strong>{{QUOTE_AUTHOR}}</strong>
+            <span>{{QUOTE_ROLE}}, {{CLIENT_NAME}}</span>
+          </footer>
+        </section>
+
+        <section class="case-cta">
+          <p class="chapter chapter-light">
+            <span class="chapter-num">§ Next</span>
+            <span class="chapter-rule" aria-hidden="true"></span>
+            <span class="chapter-label">Your turn</span>
+          </p>
+          <h2>Want a <em>similar result</em> for your team?</h2>
+          <p>
+            Book a free 20-minute AI Automation Audit and walk one of your
+            workflows through the same framework. No slides, no pitch &mdash;
+            just a working diagnosis of where automation belongs in your
+            operation.
+          </p>
+          <a class="button primary" href="../#contact">
+            Book the audit
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M5 12h14"></path>
+              <path d="m13 6 6 6-6 6"></path>
+            </svg>
+          </a>
+        </section>
+      </article>
+    </main>
+
+    <footer class="site-footer">
+      <span class="footer-mark"><span class="brand-mark sm" aria-hidden="true">KC</span> <em>Kapil Chauhan</em></span>
+      <span class="footer-mono">© 2026 · Built &amp; deployed by hand</span>
+      <a href="#top" class="footer-top">Back to top <span aria-hidden="true">↑</span></a>
+    </footer>
+
+    <script src="../script.js"></script>
+  </body>
+</html>
