@@ -1228,6 +1228,17 @@ section[id] {
   color: var(--cream-2);
 }
 
+.audit-followon {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(243, 239, 226, 0.18);
+  color: var(--cream-3) !important;
+  font-family: var(--font-mono);
+  font-size: 0.78rem !important;
+  line-height: 1.6;
+  letter-spacing: 0.005em;
+}
+
 .check-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
