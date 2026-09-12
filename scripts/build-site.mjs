@@ -22,19 +22,19 @@ const SITE_FILES = [
   "_redirects",
 ];
 
-const LEGACY_CASE_SLUGS = [
-  "index",
-  "kore-labs",
-  "laurastar",
-  "martek-global",
-  "openprovider",
-  "people-element",
-  "procys",
-  "profinda",
-  "sai-global",
-  "shamrock-marketing",
-  "shopsavvy",
-  "trialhaus",
+const CASE_PAGES = [
+  { slug: "index", file: "index.html" },
+  { slug: "procys", file: "procys.html" },
+  { slug: "openprovider", file: "openprovider.html" },
+  { slug: "kore-labs", file: "kore-labs.html" },
+  { slug: "laurastar", file: "laurastar.html" },
+  { slug: "profinda", file: "profinda.html" },
+  { slug: "shopsavvy", file: "shopsavvy.html" },
+  { slug: "people-element", file: "people-element.html" },
+  { slug: "shamrock-marketing", file: "shamrock-marketing.html" },
+  { slug: "sai-global", file: "sai-global.html" },
+  { slug: "trialhaus", file: "trialhaus.html" },
+  { slug: "martek-global", file: "martek-global.html" },
 ];
 
 async function requireRegularFile(path) {
@@ -87,6 +87,10 @@ export async function buildPortfolioSite() {
     throw new Error("Required portfolio-assets directory is missing or invalid");
   }
 
+  for (const page of CASE_PAGES) {
+    await requireRegularFile(join(portfolioRoot, "case", page.file));
+  }
+
   await resetOutputDirectory();
 
   for (const file of SITE_FILES) {
@@ -94,6 +98,13 @@ export async function buildPortfolioSite() {
   }
 
   await copyAssetTree(assetDirectory, join(outputDirectory, "portfolio-assets"));
+  await mkdir(join(outputDirectory, "case"), { recursive: true });
+  for (const page of CASE_PAGES) {
+    await copyFile(
+      join(portfolioRoot, "case", page.file),
+      join(outputDirectory, "case", page.file),
+    );
+  }
   return outputDirectory;
 }
 
@@ -151,7 +162,6 @@ function redirectDocument(target, title) {
 
 export async function buildGithubPagesRedirect(rawTarget) {
   const target = normalizeNetlifyTarget(rawTarget);
-  const workTarget = new URL("#work", target).toString();
 
   await resetOutputDirectory();
   await mkdir(join(outputDirectory, "case"), { recursive: true });
@@ -160,10 +170,13 @@ export async function buildGithubPagesRedirect(rawTarget) {
     writeFile(join(outputDirectory, "index.html"), redirectDocument(target, "Kapil Chauhan portfolio")),
     writeFile(join(outputDirectory, "404.html"), redirectDocument(target, "Portfolio moved")),
     writeFile(join(outputDirectory, "robots.txt"), "User-agent: *\nDisallow: /\n"),
-    ...LEGACY_CASE_SLUGS.map((slug) =>
+    ...CASE_PAGES.map((page) =>
       writeFile(
-        join(outputDirectory, "case", `${slug}.html`),
-        redirectDocument(workTarget, "Selected work moved"),
+        join(outputDirectory, "case", page.file),
+        redirectDocument(
+          new URL(page.slug === "index" ? "case/" : `case/${page.file}`, target).toString(),
+          "Selected work moved",
+        ),
       ),
     ),
   ]);

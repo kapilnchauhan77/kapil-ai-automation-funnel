@@ -450,3 +450,54 @@ body[data-motion="reduced"] .route-progress path { stroke-dashoffset: 0; transit
   [data-scroll-project] .project-media { position: relative; top: auto; transform: none; }
   [data-scroll-project] .project-media img { transform: none; }
 }
+
+/* Case studies share the portfolio shell and remain readable without motion. */
+.case-collection-callout { display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin-top: 4rem; padding: clamp(1.6rem, 4vw, 3.5rem); border: 1px solid var(--line); background: var(--cobalt-pale); }
+.case-collection-callout h3 { margin: .8rem 0; font-size: clamp(2rem, 3.8vw, 3.5rem); }
+.case-collection-callout p:last-child { max-width: 55ch; margin: 0; color: var(--carbon-soft); }
+.case-collection-callout .button { flex-shrink: 0; }
+.case-index, .case { width: min(1200px, calc(100% - var(--gutter) * 2)); margin: 0 auto; }
+.case-index-hero, .case-hero { padding: clamp(3rem, 7vw, 7rem) 0 clamp(2.5rem, 5vw, 5rem); }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.5rem; color: var(--carbon-soft); font-size: .8rem; }
+.breadcrumb a:hover { color: var(--cobalt); text-decoration: underline; text-underline-offset: .25em; }
+.case-index-title, .case-title { max-width: 17ch; font-size: clamp(3rem, 6.4vw, 6.6rem); line-height: .98; margin: .8rem 0 1.5rem; }
+.case-index-sub, .case-subtitle { max-width: 65ch; margin-bottom: 0; color: var(--carbon-soft); font-size: clamp(1.05rem, 1.65vw, 1.35rem); line-height: 1.55; }
+.case-eyebrow, .case-card-tag { color: var(--cobalt-dark); font: 650 .7rem/1.5 var(--mono); text-transform: uppercase; letter-spacing: .07em; }
+.case-grid { list-style: none; margin: 0; padding-left: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.3rem; padding-bottom: 5rem; }
+.case-card { height: 100%; display: flex; flex-direction: column; align-items: flex-start; padding: clamp(1.4rem, 3vw, 2.5rem); background: var(--surface); border: 1px solid var(--line); transition: border-color 160ms var(--ease-state), background-color 160ms var(--ease-state); }
+.case-card:hover { border-color: var(--cobalt); background: #fff; }
+.case-card-name { margin: .8rem 0; font-size: clamp(1.75rem, 2.5vw, 2.5rem); line-height: 1.05; }
+.case-card-headline { max-width: 48ch; color: var(--carbon-soft); }
+.case-card-stack { display: flex; flex-wrap: wrap; gap: .5rem .8rem; margin-top: auto; padding-top: .5rem; color: var(--carbon-soft); font: .72rem/1.7 var(--mono); }
+.case-card-cta { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem; color: var(--cobalt-dark); font-size: .85rem; font-weight: 650; }
+.case-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.case-meta dl { display: contents; }
+.case-meta dt { margin-bottom: .4rem; color: var(--carbon-soft); font: .68rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.case-meta dd { margin: 0; font-size: .9rem; }
+.case-body { max-width: 850px; margin-left: auto; }
+.case-section { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+.case-section h2 { font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.1; letter-spacing: -.045em; }
+.case-section p, .case-bullets { color: var(--carbon-soft); font-size: 1.04rem; line-height: 1.75; }
+.case-section p:last-child { margin-bottom: 0; }
+.case-bullets { padding-left: 1.25rem; margin-bottom: 0; }
+.case-bullets li + li { margin-top: .9rem; }
+.case-bullets strong { color: var(--carbon); font-weight: 600; }
+.case-stack { display: flex; flex-wrap: wrap; gap: .55rem; padding: 0; list-style: none; }
+.case-stack li, .case-stack span { padding: .45rem .7rem; border: 1px solid var(--line); font: .78rem/1.4 var(--mono); }
+.case-cta { margin: 3rem 0 5rem; padding: clamp(1.5rem, 4vw, 3rem); background: var(--cobalt-pale); }
+.case-cta h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); line-height: 1.05; }
+.case-cta p { max-width: 60ch; color: var(--carbon-soft); }
+.case-cta .button { margin: .5rem .5rem 0 0; }
+body:has(.case) > .site-footer, body:has(.case-index) > .site-footer { width: 100%; margin: 0; padding: 2rem var(--gutter); }
+@media (max-width: 780px) {
+  .case-grid { grid-template-columns: 1fr; }
+  .case-meta { grid-template-columns: 1fr; gap: 1.2rem; }
+  .case-collection-callout { align-items: flex-start; flex-direction: column; }
+  .case-title { overflow-wrap: anywhere; }
+  .case-section { padding-block: 2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .case-card { transition: none; }
+}
+
+.case-title em, .case-index-title em { color: var(--cobalt); font-style: normal; }
