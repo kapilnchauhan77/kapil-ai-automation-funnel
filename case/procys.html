@@ -1,217 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Procys — How Procys cut per-invoice handling time from 12 minutes to under 3. | Kapil Chauhan</title>
-    <meta name="description" content="How Procys cut per-invoice handling time from 12 minutes to under 3 with a context-aware AI document intelligence pipeline — invoice extraction, validation, and identity cross-checks.">
-    <meta name="author" content="Kapil Chauhan">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-    <meta name="theme-color" content="#0a0a09">
-    <link rel="canonical" href="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/procys.html">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Kapil Chauhan — AI Automation">
-    <meta property="og:title" content="Procys — How Procys cut per-invoice handling time from 12 minutes to under 3.">
-    <meta property="og:description" content="How Procys cut per-invoice handling time from 12 minutes to under 3 with a context-aware AI document intelligence pipeline — invoice extraction, validation, and identity cross-checks.">
-    <meta property="og:url" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/procys.html">
-    <meta property="og:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="article:author" content="Kapil Chauhan">
-    <meta property="article:published_time" content="2026-05-26">
-    <meta property="article:section" content="Case study">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Procys — How Procys cut per-invoice handling time from 12 minutes to under 3.">
-    <meta name="twitter:description" content="How Procys cut per-invoice handling time from 12 minutes to under 3 with a context-aware AI document intelligence pipeline — invoice extraction, validation, and identity cross-checks.">
-    <meta name="twitter:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
-
-    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%23045646"/%3E%3Ctext x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="%23fffdf8"%3EKC%3C/text%3E%3C/svg%3E'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
-
-    <!-- Structured data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home",
-              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/" },
-            { "@type": "ListItem", "position": 2, "name": "Case studies",
-              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/#proof" },
-            { "@type": "ListItem", "position": 3, "name": "Procys",
-              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/procys.html" }
-          ]
-        },
-        {
-          "@type": "Article",
-          "headline": "Procys — How Procys cut per-invoice handling time from 12 minutes to under 3.",
-          "description": "How Procys cut per-invoice handling time from 12 minutes to under 3 with a context-aware AI document intelligence pipeline — invoice extraction, validation, and identity cross-checks.",
-          "datePublished": "2026-05-26",
-          "author": {
-            "@type": "Person",
-            "name": "Kapil Chauhan",
-            "url": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/"
-          },
-          "publisher": {
-            "@type": "Person",
-            "name": "Kapil Chauhan"
-          },
-          "articleSection": "Case study",
-          "image": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png",
-          "mainEntityOfPage": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/procys.html"
-        }
-      ]
-    }
-    </script>
-  </head>
-
-  <body>
-    <!--
-      VERIFY before publishing — these numeric claims were drafted as
-      conservative directional estimates. Swap any that are inaccurate
-      and delete the lines you've confirmed.
-
-        - 12 → 2.5 min per-invoice handling — confirm against real before/after timings
-        - 97% field-level extraction accuracy — confirm the evaluation set
-        - 5× throughput per reviewer — confirm against the headcount-vs-volume math
-    -->
-
-    <header class="site-header" aria-label="Site header">
-      <a class="brand" href="../" aria-label="Kapil Chauhan home">
-        <span class="brand-mark" aria-hidden="true">KC</span>
-        <span class="brand-text">
-          <strong>Kapil Chauhan</strong>
-          <small><span aria-hidden="true">→</span> AI/ML Solution Architect</small>
-        </span>
-      </a>
-
-      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
-        <svg aria-hidden="true" viewBox="0 0 24 24">
-          <path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path>
-        </svg>
-      </button>
-
-      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
-        <a href="../#services">Services</a>
-        <a href="../#audit">Audit</a>
-        <a href="./">Selected work</a>
-        <a href="../#voices">Voices</a>
-        <a href="../#process">Process</a>
-        <a class="nav-cta" href="../#contact">Free 30-min call</a>
-      </nav>
-    </header>
-
-    <main id="top">
-      <article class="case">
-        <header class="case-hero">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../">Home</a>
-            <span aria-hidden="true">›</span>
-            <a href="../#proof">Case studies</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">Procys</span>
-          </nav>
-
-          <p class="chapter">
-            <span class="chapter-num">§ Case</span>
-            <span class="chapter-rule" aria-hidden="true"></span>
-            <span class="chapter-label">Document intelligence</span>
-          </p>
-          <h1 class="case-title">How Procys cut <em>per-invoice handling time</em> from 12 minutes to under 3.</h1>
-
-          <p class="case-subtitle">A context-aware narrow-AI pipeline for invoice extraction, line-item validation, and identity cross-checks across thousands of documents a day.</p>
-        </header>
-        <aside class="case-meta" aria-label="Engagement metadata">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Procys | Selected AI work | Kapil Chauhan</title>
+  <meta name="description" content="Production LLM agents for document processing and identity verification">
+  <meta name="author" content="Kapil Chauhan">
+  <link rel="canonical" href="https://kapilchauhan.netlify.app/case/procys.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Procys | Selected AI work | Kapil Chauhan">
+  <meta property="og:description" content="Production LLM agents for document processing and identity verification">
+  <meta property="og:url" content="https://kapilchauhan.netlify.app/case/procys.html">
+  <meta property="og:image" content="https://kapilchauhan.netlify.app/portfolio-assets/ai-social-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Procys | Selected AI work | Kapil Chauhan">
+  <meta name="twitter:description" content="Production LLM agents for document processing and identity verification">
+  <meta name="twitter:image" content="https://kapilchauhan.netlify.app/portfolio-assets/ai-social-card.jpg">
+  <meta name="theme-color" content="#f2f4f6">
+  <link rel="icon" href="../portfolio-assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Instrument+Sans:wght@400;450;500;550;600;650;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="../" aria-label="Kapil Chauhan home"><span class="brand-monogram" aria-hidden="true">kc.</span><span>Kapil Chauhan</span></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation">Menu <span aria-hidden="true">+</span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a href="../">Home</a><a href="./" aria-current="page">Case studies</a><a href="../#services">Services</a><a href="../#about">About</a><a class="button button-primary" href="../#start">Start <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <article class="case">
+      <header class="case-hero">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">›</span><a href="./">Case studies</a><span aria-hidden="true">›</span><span aria-current="page">Procys</span></nav>
+        <p class="case-eyebrow">Document intelligence</p>
+        <h1 class="case-title">Procys: Document intelligence</h1>
+        <p class="case-subtitle">Production LLM agents for document processing and identity verification</p>
+        <aside class="case-meta" aria-label="Engagement details"><dl>
           <div><dt>Client</dt><dd>Procys</dd></div>
           <div><dt>Industry</dt><dd>Document intelligence</dd></div>
-          <div><dt>Year</dt><dd>2024</dd></div>
-          <div><dt>Engagement</dt><dd>Custom build</dd></div>
-          <div><dt>Role</dt><dd>AI/ML Solution Architect</dd></div>
-        </aside>
-        <section class="case-metrics" aria-label="Outcome metrics">
-          <div>
-            <strong>12 → 2.5 min</strong>
-            <span>per-invoice handling time</span>
-          </div>
-          <div>
-            <strong>97%</strong>
-            <span>field-level extraction accuracy</span>
-          </div>
-          <div>
-            <strong>5×</strong>
-            <span>throughput per reviewer</span>
-          </div>
+          <div><dt>Contribution</dt><dd>Solution architecture and engineering</dd></div>
+        </dl></aside>
+      </header>
+      <div class="case-body">
+        <section class="case-section" aria-labelledby="context-title">
+          <h2 id="context-title">Context</h2>
+          <p>Invoices arrive with different layouts, field names and levels of scan quality. Extracting text is only part of the work. Header fields, line items and tax amounts need to form a usable record, and uncertain values need a review path before they reach the next business system.</p>
         </section>
-
-        <div class="case-body">
-          <h2>The problem</h2>
-          <p>Procys was handling thousands of supplier invoices a day across procurement and finance teams. The pipeline depended on humans reading PDFs, copying line items into a structured system, and cross-checking supplier and customer details on every entry. The same step ran twelve to fifteen minutes per invoice, on every invoice, in every workflow.</p>
-          <p>Off-the-shelf OCR could read the text. It couldn't tell which numbers belonged to which line, validate against a purchase order, or flag a counterparty mismatch with the confidence needed to skip human review.</p>
-
-          <h2>What I built</h2>
-          <p>I built a context-aware narrow-AI pipeline combining OCR, LLM-driven layout reasoning, and deterministic validation. The system extracts header fields, line items, and tax breakdowns in a single pass, then runs CrossCheck — a validation step that compares supplier and customer identity data against the platform's historical records before anything is committed.</p>
+        <section class="case-section" aria-labelledby="system-title">
+          <h2 id="system-title">System and approach</h2>
+          <p>The pipeline combines OCR with LLM reasoning about document layout, then applies deterministic validation to the extracted fields. Field confidence and checks against existing records help separate accepted data from exceptions. Reviewers receive the document context needed to resolve uncertain fields.</p>
           <ul class="case-bullets">
-            <li>OCR + LLM layout reasoning that handles unstructured invoice formats without per-vendor templates.</li>
-            <li>Line-item extraction with per-field confidence scores, so reviewers see only what needs human eyes.</li>
-            <li>CrossCheck identity validation comparing supplier / customer details against historical platform records.</li>
-            <li>Exception routing — anything below the confidence threshold goes to a fast human-review queue with context attached.</li>
+            <li>Extract structured header fields, line items, and tax breakdowns from varied invoice layouts.</li>
+            <li>Combine OCR with LLM layout reasoning before deterministic validation.</li>
+            <li>Attach field confidence and compare identities with existing records.</li>
+            <li>Route uncertain fields into exception review with context attached.</li>
           </ul>
-
-          <h2>The outcome</h2>
-          <p>Per-invoice handling time dropped from twelve minutes to two and a half. Reviewers stopped reading every line and started reading exceptions only — same headcount, five times the throughput.</p>
-          <p>Extraction accuracy at the field level landed at 97% with confidence-scored exception handling for the rest. CrossCheck caught counterparty mismatches that manual reviewers had been missing under volume pressure.</p>
-
-          <h2>Tech stack</h2>
-          <div class="case-stack" aria-label="Tech stack">
-            <span>Python</span>
-            <span>FastAPI</span>
-            <span>OpenAI</span>
-            <span>AWS Textract</span>
-            <span>PostgreSQL</span>
-            <span>Docker</span>
-          </div>
-        </div>
-
-        <section class="case-cta">
-          <p class="chapter chapter-light">
-            <span class="chapter-num">§ Next</span>
-            <span class="chapter-rule" aria-hidden="true"></span>
-            <span class="chapter-label">Your turn</span>
-          </p>
-          <h2>Want a <em>similar result</em> for your team?</h2>
-          <p>
-            Book a free 30-minute workflow diagnosis and walk one of your
-            workflows through the same framework. No slides, no pitch &mdash;
-            just an honest read on where automation belongs in your
-            operation.
-          </p>
-          <a class="button primary" href="../#contact">
-            Book the audit
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M5 12h14"></path>
-              <path d="m13 6 6 6-6 6"></path>
-            </svg>
-          </a>
         </section>
-      </article>
-    </main>
-
-    <footer class="site-footer">
-      <span class="footer-mark"><span class="brand-mark sm" aria-hidden="true">KC</span> <em>Kapil Chauhan</em></span>
-      <span class="footer-mono">© 2026 · Built &amp; deployed by hand</span>
-      <a href="#top" class="footer-top">Back to top <span aria-hidden="true">↑</span></a>
-    </footer>
-
-    <script src="../script.js"></script>
-  </body>
+        <section class="case-section" aria-labelledby="scope-title">
+          <h2 id="scope-title">Delivered scope</h2>
+          <p>Document extraction, validation and review are connected in one workflow. The engineering scope includes structured invoice data, counterparty checks and exception handling.</p>
+        </section>
+        <section class="case-section" aria-labelledby="stack-title">
+          <h2 id="stack-title">Technology</h2>
+          <ul class="case-stack" aria-label="Technology used">
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>OpenAI</li>
+            <li>AWS Textract</li>
+            <li>PostgreSQL</li>
+            <li>Docker</li>
+          </ul>
+        </section>
+      </div>
+      <footer class="case-cta">
+        <h2>Building an AI product?</h2>
+        <p>Tell me what it needs to do and where your team needs help.</p>
+        <a class="button button-primary" href="../#start">Discuss an AI project <span aria-hidden="true">↗</span></a>
+      </footer>
+    </article>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="../">kc. <span>Kapil Chauhan</span></a><div class="footer-links"><a href="https://www.linkedin.com/in/kapil-c-887b8b179/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/kapilnchauhan77" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button id="motionToggle" type="button" aria-pressed="false">Reduce motion</button><span>© 2026 Kapil Chauhan</span></div></footer>
+</body>
 </html>

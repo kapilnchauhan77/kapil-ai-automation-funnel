@@ -1,217 +1,89 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>ProFinda — Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI. | Kapil Chauhan</title>
-    <meta name="description" content="Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI — 60% faster training, 40% lower infra cost, 100k+ employee profiles indexed, with the Rails app untouched.">
-    <meta name="author" content="Kapil Chauhan">
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-    <meta name="theme-color" content="#0a0a09">
-    <link rel="canonical" href="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/profinda.html">
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="Kapil Chauhan — AI Automation">
-    <meta property="og:title" content="ProFinda — Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI.">
-    <meta property="og:description" content="Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI — 60% faster training, 40% lower infra cost, 100k+ employee profiles indexed, with the Rails app untouched.">
-    <meta property="og:url" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/profinda.html">
-    <meta property="og:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="article:author" content="Kapil Chauhan">
-    <meta property="article:published_time" content="2026-05-26">
-    <meta property="article:section" content="Case study">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="ProFinda — Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI.">
-    <meta name="twitter:description" content="Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI — 60% faster training, 40% lower infra cost, 100k+ employee profiles indexed, with the Rails app untouched.">
-    <meta name="twitter:image" content="https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png">
-
-    <link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"%3E%3Crect width="64" height="64" rx="12" fill="%23045646"/%3E%3Ctext x="32" y="40" text-anchor="middle" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="%23fffdf8"%3EKC%3C/text%3E%3C/svg%3E'>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,0..100;1,9..144,300..900,0..100&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles.css">
-
-    <!-- Structured data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Home",
-              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/" },
-            { "@type": "ListItem", "position": 2, "name": "Case studies",
-              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/#proof" },
-            { "@type": "ListItem", "position": 3, "name": "ProFinda",
-              "item": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/profinda.html" }
-          ]
-        },
-        {
-          "@type": "Article",
-          "headline": "ProFinda — Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI.",
-          "description": "Migrating ProFinda's ML insights pipeline from AWS to GCP Vertex AI — 60% faster training, 40% lower infra cost, 100k+ employee profiles indexed, with the Rails app untouched.",
-          "datePublished": "2026-05-26",
-          "author": {
-            "@type": "Person",
-            "name": "Kapil Chauhan",
-            "url": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/"
-          },
-          "publisher": {
-            "@type": "Person",
-            "name": "Kapil Chauhan"
-          },
-          "articleSection": "Case study",
-          "image": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/assets/og-image.png",
-          "mainEntityOfPage": "https://kapilnchauhan77.github.io/kapil-ai-automation-funnel/case/profinda.html"
-        }
-      ]
-    }
-    </script>
-  </head>
-
-  <body>
-    <!--
-      VERIFY before publishing — these numeric claims were drafted as
-      conservative directional estimates. Swap any that are inaccurate
-      and delete the lines you've confirmed.
-
-        - 60% faster training cycles — confirm against measured AWS-vs-Vertex timing
-        - 40% infra-cost reduction — confirm against the actual GCP vs AWS bill comparison
-        - 100k+ employee profiles indexed — confirm current index size
-    -->
-
-    <header class="site-header" aria-label="Site header">
-      <a class="brand" href="../" aria-label="Kapil Chauhan home">
-        <span class="brand-mark" aria-hidden="true">KC</span>
-        <span class="brand-text">
-          <strong>Kapil Chauhan</strong>
-          <small><span aria-hidden="true">→</span> AI/ML Solution Architect</small>
-        </span>
-      </a>
-
-      <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation">
-        <svg aria-hidden="true" viewBox="0 0 24 24">
-          <path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path>
-        </svg>
-      </button>
-
-      <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
-        <a href="../#services">Services</a>
-        <a href="../#audit">Audit</a>
-        <a href="./">Selected work</a>
-        <a href="../#voices">Voices</a>
-        <a href="../#process">Process</a>
-        <a class="nav-cta" href="../#contact">Free 30-min call</a>
-      </nav>
-    </header>
-
-    <main id="top">
-      <article class="case">
-        <header class="case-hero">
-          <nav class="breadcrumb" aria-label="Breadcrumb">
-            <a href="../">Home</a>
-            <span aria-hidden="true">›</span>
-            <a href="../#proof">Case studies</a>
-            <span aria-hidden="true">›</span>
-            <span aria-current="page">ProFinda</span>
-          </nav>
-
-          <p class="chapter">
-            <span class="chapter-num">§ Case</span>
-            <span class="chapter-rule" aria-hidden="true"></span>
-            <span class="chapter-label">Resource optimisation / HR tech</span>
-          </p>
-          <h1 class="case-title">Migrating ProFinda's <em>ML insights pipeline</em> from AWS to GCP Vertex AI.</h1>
-
-          <p class="case-subtitle">A surgical lift-and-rebuild of the resource-matching ML layer onto Vertex Pipelines — without re-platforming the existing Ruby on Rails + React surface.</p>
-        </header>
-        <aside class="case-meta" aria-label="Engagement metadata">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ProFinda | Selected AI work | Kapil Chauhan</title>
+  <meta name="description" content="An ML insights migration that kept the existing Rails and React product intact">
+  <meta name="author" content="Kapil Chauhan">
+  <link rel="canonical" href="https://kapilchauhan.netlify.app/case/profinda.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ProFinda | Selected AI work | Kapil Chauhan">
+  <meta property="og:description" content="An ML insights migration that kept the existing Rails and React product intact">
+  <meta property="og:url" content="https://kapilchauhan.netlify.app/case/profinda.html">
+  <meta property="og:image" content="https://kapilchauhan.netlify.app/portfolio-assets/ai-social-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ProFinda | Selected AI work | Kapil Chauhan">
+  <meta name="twitter:description" content="An ML insights migration that kept the existing Rails and React product intact">
+  <meta name="twitter:image" content="https://kapilchauhan.netlify.app/portfolio-assets/ai-social-card.jpg">
+  <meta name="theme-color" content="#f2f4f6">
+  <link rel="icon" href="../portfolio-assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Instrument+Sans:wght@400;450;500;550;600;650;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="wordmark" href="../" aria-label="Kapil Chauhan home"><span class="brand-monogram" aria-hidden="true">kc.</span><span>Kapil Chauhan</span></a>
+    <button class="nav-toggle" id="navToggle" type="button" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation">Menu <span aria-hidden="true">+</span></button>
+    <nav class="primary-nav" id="primaryNav" aria-label="Primary navigation">
+      <a href="../">Home</a><a href="./" aria-current="page">Case studies</a><a href="../#services">Services</a><a href="../#about">About</a><a class="button button-primary" href="../#start">Start <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+  <main id="main">
+    <article class="case">
+      <header class="case-hero">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../">Home</a><span aria-hidden="true">›</span><a href="./">Case studies</a><span aria-hidden="true">›</span><span aria-current="page">ProFinda</span></nav>
+        <p class="case-eyebrow">Resource optimisation and HR technology</p>
+        <h1 class="case-title">ProFinda: ML platform migration</h1>
+        <p class="case-subtitle">An ML insights migration that kept the existing Rails and React product intact</p>
+        <aside class="case-meta" aria-label="Engagement details"><dl>
           <div><dt>Client</dt><dd>ProFinda</dd></div>
-          <div><dt>Industry</dt><dd>Resource optimisation / HR tech</dd></div>
-          <div><dt>Year</dt><dd>2022</dd></div>
-          <div><dt>Engagement</dt><dd>Platform migration</dd></div>
-          <div><dt>Role</dt><dd>AI/ML Solution Architect</dd></div>
-        </aside>
-        <section class="case-metrics" aria-label="Outcome metrics">
-          <div>
-            <strong>60%</strong>
-            <span>faster training cycles</span>
-          </div>
-          <div>
-            <strong>40%</strong>
-            <span>infra-cost reduction</span>
-          </div>
-          <div>
-            <strong>100k+</strong>
-            <span>employee profiles indexed</span>
-          </div>
+          <div><dt>Industry</dt><dd>Resource optimisation and HR technology</dd></div>
+          <div><dt>Contribution</dt><dd>Solution architecture and engineering</dd></div>
+        </dl></aside>
+      </header>
+      <div class="case-body">
+        <section class="case-section" aria-labelledby="context-title">
+          <h2 id="context-title">Context</h2>
+          <p>The resource optimization product already used Rails, React and PostgreSQL. Its machine learning insights layer needed a new MLOps setup without requiring the application itself to be rebuilt. The migration therefore had to preserve the product&#x27;s data and integration contracts.</p>
         </section>
-
-        <div class="case-body">
-          <h2>The problem</h2>
-          <p>ProFinda runs a resource-optimisation platform that matches people to projects at enterprise scale. The original ML insights layer lived in an AWS-hosted stack — Rails app, React frontend, Airflow orchestration, Python feature engineering, PostgreSQL — and had grown expensive and slow to retrain as the platform scaled.</p>
-          <p>The team wanted modern MLOps tooling without re-platforming the entire app to get it. The constraint was clear: migrate the ML insights pipeline only, preserve the Rails / React stack, and don't break anything.</p>
-
-          <h2>What I built</h2>
-          <p>I rebuilt the insights pipeline on GCP Vertex AI while keeping ProFinda's existing Ruby on Rails + React surface intact. Feature engineering moved from AWS-hosted Airflow jobs to Vertex Pipelines; the PostgreSQL feature store stayed in place as the source of truth; outputs come back into the existing Rails app over a clean API boundary.</p>
+        <section class="case-section" aria-labelledby="system-title">
+          <h2 id="system-title">System and approach</h2>
+          <p>ML workflows and feature engineering moved from AWS Airflow into GCP Vertex Pipelines. PostgreSQL remained the source of truth for features, and a defined API connected the insights service back to Rails. This kept the ML migration scoped to the workloads and services that needed to change.</p>
           <ul class="case-bullets">
-            <li>Lift-and-rebuild of the ML insights layer from AWS-hosted Airflow to GCP Vertex Pipelines.</li>
-            <li>Feature engineering ported from custom Python jobs to managed Vertex feature workflows.</li>
-            <li>PostgreSQL feature store preserved as the source of truth — no app-side schema migration required.</li>
-            <li>Clean Rails ↔ GCP API boundary so the existing application stayed unchanged.</li>
+            <li>Preserve the Rails, React, and PostgreSQL product surface.</li>
+            <li>Move AWS Airflow ML workflows into GCP Vertex Pipelines.</li>
+            <li>Keep PostgreSQL as the feature source of truth.</li>
+            <li>Return insights through a defined Rails to GCP API boundary.</li>
           </ul>
-
-          <h2>The outcome</h2>
-          <p>Training cycles ran roughly 60% faster on Vertex compared to the previous AWS pipeline, with much less infrastructure to maintain. Infrastructure cost on the ML side dropped about 40% post-migration once managed services replaced bespoke Airflow clusters.</p>
-          <p>The 100k+ employee-profile index now refreshes on a cadence that previously wasn't feasible — which means matching quality has effectively improved without changing the matching algorithm itself.</p>
-
-          <h2>Tech stack</h2>
-          <div class="case-stack" aria-label="Tech stack">
-            <span>Ruby on Rails</span>
-            <span>React</span>
-            <span>Python</span>
-            <span>FastAPI</span>
-            <span>GCP Vertex AI</span>
-            <span>PostgreSQL</span>
-          </div>
-        </div>
-
-        <section class="case-cta">
-          <p class="chapter chapter-light">
-            <span class="chapter-num">§ Next</span>
-            <span class="chapter-rule" aria-hidden="true"></span>
-            <span class="chapter-label">Your turn</span>
-          </p>
-          <h2>Want a <em>similar result</em> for your team?</h2>
-          <p>
-            Book a free 30-minute workflow diagnosis and walk one of your
-            workflows through the same framework. No slides, no pitch &mdash;
-            just an honest read on where automation belongs in your
-            operation.
-          </p>
-          <a class="button primary" href="../#contact">
-            Book the audit
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M5 12h14"></path>
-              <path d="m13 6 6 6-6 6"></path>
-            </svg>
-          </a>
         </section>
-      </article>
-    </main>
-
-    <footer class="site-footer">
-      <span class="footer-mark"><span class="brand-mark sm" aria-hidden="true">KC</span> <em>Kapil Chauhan</em></span>
-      <span class="footer-mono">© 2026 · Built &amp; deployed by hand</span>
-      <a href="#top" class="footer-top">Back to top <span aria-hidden="true">↑</span></a>
-    </footer>
-
-    <script src="../script.js"></script>
-  </body>
+        <section class="case-section" aria-labelledby="scope-title">
+          <h2 id="scope-title">Delivered scope</h2>
+          <p>The work covers the ML pipeline migration, feature workflows and integration between the existing application and Vertex AI.</p>
+        </section>
+        <section class="case-section" aria-labelledby="stack-title">
+          <h2 id="stack-title">Technology</h2>
+          <ul class="case-stack" aria-label="Technology used">
+            <li>Ruby on Rails</li>
+            <li>React</li>
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>GCP Vertex AI</li>
+            <li>PostgreSQL</li>
+          </ul>
+        </section>
+      </div>
+      <footer class="case-cta">
+        <h2>Building an AI product?</h2>
+        <p>Tell me what it needs to do and where your team needs help.</p>
+        <a class="button button-primary" href="../#start">Discuss an AI project <span aria-hidden="true">↗</span></a>
+      </footer>
+    </article>
+  </main>
+  <footer class="site-footer"><a class="wordmark" href="../">kc. <span>Kapil Chauhan</span></a><div class="footer-links"><a href="https://www.linkedin.com/in/kapil-c-887b8b179/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/kapilnchauhan77" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button id="motionToggle" type="button" aria-pressed="false">Reduce motion</button><span>© 2026 Kapil Chauhan</span></div></footer>
+</body>
 </html>
