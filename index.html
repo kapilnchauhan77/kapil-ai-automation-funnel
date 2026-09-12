@@ -51,22 +51,24 @@
     </nav>
   </header>
   <main id="main">
-    <section class="hero section" id="top" data-sc-act="flow" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <p class="eyebrow">Independent engineer & builder</p>
-        <h1 class="hero-title" id="hero-title">Websites that work.<br><span>AI that delivers.</span></h1>
-        <p class="hero-description">I’m Kapil. I build websites, web products and AI systems that make your business easier to run.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#start">Start a project <span aria-hidden="true">↗</span></a><a class="text-link" href="#work">Explore my work <span aria-hidden="true">↘</span></a></div>
-      </div>
-      <div class="hero-scene" aria-label="A selection of my website and product work">
-        <figure class="hero-shot hero-shot--back"><img src="portfolio-assets/bend-community.jpg" alt="The Bend community platform website" width="1280" height="720" fetchpriority="high"></figure>
-        <figure class="hero-shot hero-shot--main"><img src="portfolio-assets/authentica.jpg" alt="Authentica restaurant website featuring its food and menu" width="1280" height="720" fetchpriority="high"></figure>
-        <figure class="hero-shot hero-shot--front"><img src="portfolio-assets/law-study.jpg" alt="AI-assisted judiciary study platform" width="1280" height="720"></figure>
+    <section class="hero section" id="top" data-sc-act="flow" data-scroll-scene="hero" aria-labelledby="hero-title">
+      <div class="hero-stage">
+        <div class="hero-copy">
+          <p class="eyebrow">Independent engineer & builder</p>
+          <h1 class="hero-title" id="hero-title">Websites that work.<br><span>AI that delivers.</span></h1>
+          <p class="hero-description">I’m Kapil. I build websites, web products and AI systems that make your business easier to run.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#start">Start a project <span aria-hidden="true">↗</span></a><a class="text-link" href="#work">Explore my work <span aria-hidden="true">↘</span></a></div>
+        </div>
+        <div class="hero-scene" aria-label="A selection of my website and product work">
+          <figure class="hero-shot hero-shot--back"><img src="portfolio-assets/bend-community.jpg" alt="The Bend community platform website" width="1280" height="720" fetchpriority="high"></figure>
+          <figure class="hero-shot hero-shot--main"><img src="portfolio-assets/authentica.jpg" alt="Authentica restaurant website featuring its food and menu" width="1280" height="720" fetchpriority="high"></figure>
+          <figure class="hero-shot hero-shot--front"><img src="portfolio-assets/law-study.jpg" alt="AI-assisted judiciary study platform" width="1280" height="720"></figure>
+        </div>
       </div>
     </section>
 
     <section class="section" id="services" data-sc-act="flow" aria-labelledby="services-title">
-      <div class="section-intro" data-reveal><h2 id="services-title">A better front door.<br>A smarter back office.</h2><p>Your website brings people in. The systems behind it help you take care of them. I build both.</p></div>
+      <div class="section-intro" data-reveal><h2 id="services-title" data-scroll-lines><span>A better front door.</span><br><span>A smarter back office.</span></h2><p>Your website brings people in. The systems behind it help you take care of them. I build both.</p></div>
       <div class="service-list">
         <article class="service-row" data-reveal>
           <div class="service-title"><h3>Websites &<br>web products</h3></div>
@@ -83,20 +85,20 @@
 
     <section class="section" id="work" data-sc-act="flow" aria-labelledby="work-title">
       <div class="work-heading" data-reveal><h2 id="work-title">Built for real<br>businesses.</h2><p>A selection of websites and products. Each one solves a different problem.</p></div>
-      <div class="work-grid">
-        <article class="project project--wide">
-          <a class="project-media" href="https://authentica-1jc.pages.dev/" target="_blank" rel="noopener noreferrer" aria-label="Visit Authentica website, opens in a new tab" data-sc-reveal="up" data-sc-reveal-at="0 0.16"><img src="portfolio-assets/authentica.jpg" alt="Authentica's restaurant homepage with food photography and menu navigation" width="1280" height="720" loading="lazy"></a>
+      <div class="work-grid" data-scroll-projects>
+        <article class="project project--wide" data-scroll-project>
+          <a class="project-media" href="https://authentica-1jc.pages.dev/" target="_blank" rel="noopener noreferrer" aria-label="Visit Authentica website, opens in a new tab"><img src="portfolio-assets/authentica.jpg" alt="Authentica's restaurant homepage with food photography and menu navigation" width="1280" height="720" loading="lazy"></a>
           <div class="project-info"><div><p class="project-meta">Restaurant website · Design & development</p><h3>Authentica</h3></div><a class="project-link" href="https://authentica-1jc.pages.dev/" target="_blank" rel="noopener noreferrer" aria-label="Visit Authentica, opens in a new tab">View website <span aria-hidden="true">↗</span></a><p>A restaurant’s character, brought online. A browsable menu, food photography, directions and a direct path to a table enquiry.</p></div>
         </article>
-        <article class="project project--offset">
+        <article class="project project--offset" data-scroll-project>
           <a class="project-media" href="https://bend.community/" target="_blank" rel="noopener noreferrer" aria-label="Visit The Bend, opens in a new tab"><img src="portfolio-assets/bend-community.jpg" alt="The Bend community platform landing page" width="1280" height="720" loading="lazy"></a>
           <div class="project-info"><div><p class="project-meta">Community platform · Product development</p><h3>The Bend</h3></div><a class="project-link" href="https://bend.community/" target="_blank" rel="noopener noreferrer" aria-label="Visit The Bend, opens in a new tab">View platform <span aria-hidden="true">↗</span></a><p>A place for neighbors to find local businesses, share resources and discover events. Branded community sites connect the public website to the product behind it.</p></div>
         </article>
-        <article class="project">
+        <article class="project" data-scroll-project>
           <a class="project-media" href="https://study.provoke.space/" target="_blank" rel="noopener noreferrer" aria-label="Visit the law study platform, opens in a new tab"><img src="portfolio-assets/law-study.jpg" alt="Law study platform explaining faculty-reviewed learning and source-backed answers" width="1280" height="720" loading="lazy"></a>
           <div class="project-info"><div><p class="project-meta">Education · AI product</p><h3>Law study platform</h3></div><a class="project-link" href="https://study.provoke.space/" target="_blank" rel="noopener noreferrer" aria-label="Visit law study platform, opens in a new tab">View platform <span aria-hidden="true">↗</span></a><p>AI-assisted judiciary exam preparation. Faculty review material before publication, and students can explore questions with answers grounded in source content.</p></div>
         </article>
-        <article class="project project--wide">
+        <article class="project project--wide" data-scroll-project>
           <div class="project-media"><img src="portfolio-assets/procys-iv.jpg" alt="Public preview of the Procys Identity Verification interface from Make with Bend" width="1280" height="720" loading="lazy"></div>
           <div class="project-info"><div><p class="project-meta">Procys / Openprovider · AI engineering</p><h3>AI for document workflows</h3></div><a class="project-link" href="https://procys.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit Procys company website, opens in a new tab">About Procys <span aria-hidden="true">↗</span></a><p>My work at Procys spans document processing, identity verification and production AI agents, including tool integrations, evaluation and monitoring.</p></div>
         </article>
@@ -118,7 +120,7 @@
         <div class="brief-output" aria-labelledby="briefTitle">
           <div class="brief-output-heading"><span>Your starting point</span><span aria-hidden="true">↗</span></div>
           <h3 id="briefTitle">A website with a job to do.</h3><p id="briefSummary">A clear customer journey, a design that fits your business, and a working website you can use.</p>
-          <div class="brief-route" id="briefRoute" aria-label="Project stages"><span class="route-node">Your idea</span><span class="route-connector" aria-hidden="true">→</span><span class="route-node">Design & build</span><span class="route-connector" aria-hidden="true">→</span><span class="route-node">Build</span><span class="route-connector" aria-hidden="true">→</span><span class="route-node">Launch</span></div>
+          <div class="brief-route" id="briefRoute" data-scroll-workflow aria-label="Project stages"><svg class="route-progress" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true"><path d="M2 6 C24 1 25 11 48 6 S74 1 98 6"></path></svg><span class="route-node">Your idea</span><span class="route-connector" aria-hidden="true">→</span><span class="route-node">Design & build</span><span class="route-connector" aria-hidden="true">→</span><span class="route-node">Build</span><span class="route-connector" aria-hidden="true">→</span><span class="route-node">Launch</span></div>
           <pre class="brief-preview" id="briefPreview" aria-label="Your project brief">Project: Website or web product
 Goal: Launch a business website
 Budget: Let's scope it first
