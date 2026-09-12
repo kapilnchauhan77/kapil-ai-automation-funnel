@@ -8,10 +8,12 @@
   var motionToggle = doc.querySelector("#motionToggle");
   var motionQuery = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
   var motionOverride = false;
+  var scheduleScrollCoordinator = null;
   function applyMotion(reduced) {
     if (!body) return;
     body.dataset.motion = reduced ? "reduced" : "full";
     if (motionToggle) motionToggle.setAttribute("aria-pressed", String(reduced));
+    if (scheduleScrollCoordinator) scheduleScrollCoordinator();
   }
   applyMotion(Boolean(motionQuery && motionQuery.matches));
   var navToggle = doc.querySelector("#navToggle");
@@ -139,16 +141,82 @@
   if (motionToggle) { motionToggle.type = "button"; motionToggle.addEventListener("click", function () { motionOverride = true; applyMotion(!motionReduced()); }); }
   if (motionQuery) { var motionChange = function (event) { if (!motionOverride) applyMotion(event.matches); }; if (motionQuery.addEventListener) motionQuery.addEventListener("change", motionChange); else if (motionQuery.addListener) motionQuery.addListener(motionChange); }
 
-  var heroScene = doc.querySelector(".hero-scene"); var heroFrame = 0; var heroProgress = 0; var pointerX = 0; var pointerY = 0;
-  function renderHero() { heroFrame = 0; if (!heroScene || motionReduced()) return; heroScene.style.setProperty("--hero-progress", heroProgress.toFixed(3)); heroScene.style.setProperty("--pointer-x", pointerX.toFixed(2) + "px"); heroScene.style.setProperty("--pointer-y", pointerY.toFixed(2) + "px"); }
-  function scheduleHero() { if (!heroFrame) heroFrame = window.requestAnimationFrame ? window.requestAnimationFrame(renderHero) : window.setTimeout(renderHero, 16); }
-  if (heroScene) {
-    window.addEventListener("scroll", function () { var rect = heroScene.getBoundingClientRect(); var range = Math.max(window.innerHeight + rect.height, 1); heroProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / range)); scheduleHero(); }, { passive: true });
-    if (window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-      heroScene.addEventListener("pointermove", function (event) { var rect = heroScene.getBoundingClientRect(); pointerX = Math.max(-5, Math.min(5, ((event.clientX - rect.left) / rect.width - 0.5) * 10)); pointerY = Math.max(-5, Math.min(5, ((event.clientY - rect.top) / rect.height - 0.5) * 10)); scheduleHero(); }, { passive: true });
-      heroScene.addEventListener("pointerleave", function () { pointerX = 0; pointerY = 0; scheduleHero(); });
+  var heroScene = doc.querySelector(".hero-scene");
+  var heroHook = doc.querySelector('[data-scroll-scene="hero"]');
+  var heroStage = heroHook ? heroHook.querySelector(".hero-stage") : null;
+  var serviceHook = doc.querySelector("[data-scroll-lines]");
+  var projectHook = doc.querySelector("[data-scroll-projects]");
+  var projectNodes = projectHook ? projectHook.querySelectorAll("[data-scroll-project]") : [];
+  var workflowHook = doc.querySelector("[data-scroll-workflow]");
+  var scrollFrame = 0;
+  var pointerX = 0;
+  var pointerY = 0;
+  var clamp = function (value, min, max) { return Math.max(min, Math.min(max, value)); };
+  var passageProgress = function (rect, viewportHeight) { return clamp((viewportHeight - rect.top) / Math.max(viewportHeight + rect.height, 1), 0, 1); };
+  var serviceProgress = function (rect, viewportHeight) { return clamp((viewportHeight * 0.9 - rect.top) / Math.max(viewportHeight * 0.25, 1), 0, 1); };
+  var workflowProgress = function (rect, viewportHeight) { return clamp((viewportHeight * 0.9 - rect.top) / Math.max(viewportHeight * 0.55, 1), 0, 1); };
+  var isNearViewport = function (rect, viewportHeight) { return rect.bottom >= -viewportHeight * 1.5 && rect.top <= viewportHeight * 2.5; };
+  function setProgress(node, name, value) {
+    if (node) node.style.setProperty(name, value.toFixed(3));
+  }
+  function setPointer(node, name, value) {
+    if (node) node.style.setProperty(name, value.toFixed(2) + "px");
+  }
+  function setHeroProgress(value) {
+    setProgress(heroHook, "--hero-progress", value);
+    setProgress(heroStage, "--hero-progress", value);
+    setProgress(heroScene, "--hero-progress", value);
+  }
+  function renderScrollScenes() {
+    scrollFrame = 0;
+    var reduced = motionReduced();
+    var viewportHeight = Math.max(window.innerHeight || doc.documentElement.clientHeight || 1, 1);
+    if (heroHook && heroStage && (reduced || isNearViewport(heroHook.getBoundingClientRect(), viewportHeight))) {
+      var heroRect = heroHook.getBoundingClientRect();
+      var stageRect = heroStage.getBoundingClientRect();
+      var heroTravel = Math.max(heroRect.height - stageRect.height, 1);
+      var stickyTop = parseFloat(window.getComputedStyle(heroStage).top);
+      if (!isFinite(stickyTop)) stickyTop = 0;
+      setHeroProgress(reduced ? 1 : clamp((stickyTop - heroRect.top) / heroTravel, 0, 1));
+      setPointer(heroScene, "--pointer-x", reduced ? 0 : pointerX);
+      setPointer(heroScene, "--pointer-y", reduced ? 0 : pointerY);
+    }
+    if (serviceHook && (reduced || isNearViewport(serviceHook.getBoundingClientRect(), viewportHeight))) {
+      setProgress(serviceHook, "--service-progress", reduced ? 1 : serviceProgress(serviceHook.getBoundingClientRect(), viewportHeight));
+    }
+    if (projectNodes.length) {
+      Array.prototype.forEach.call(projectNodes, function (project) {
+        if (reduced || isNearViewport(project.getBoundingClientRect(), viewportHeight)) {
+          setProgress(project, "--project-progress", reduced ? 0.5 : passageProgress(project.getBoundingClientRect(), viewportHeight));
+        }
+      });
+    }
+    if (workflowHook && (reduced || isNearViewport(workflowHook.getBoundingClientRect(), viewportHeight))) {
+      var currentWorkflowProgress = reduced ? 1 : workflowProgress(workflowHook.getBoundingClientRect(), viewportHeight);
+      setProgress(workflowHook, "--workflow-progress", currentWorkflowProgress);
+      var routeNodes = workflowHook.querySelectorAll(".route-node");
+      var activeCount = reduced ? routeNodes.length : Math.max(1, Math.ceil(currentWorkflowProgress * routeNodes.length));
+      Array.prototype.forEach.call(routeNodes, function (node, index) { node.classList.toggle("is-active", index < activeCount); });
     }
   }
+  function scheduleScrollScenes() {
+    if (scrollFrame) return;
+    if (window.requestAnimationFrame) scrollFrame = window.requestAnimationFrame(renderScrollScenes);
+    else scrollFrame = window.setTimeout(renderScrollScenes, 16);
+  }
+  scheduleScrollCoordinator = scheduleScrollScenes;
+  window.addEventListener("scroll", scheduleScrollScenes, { passive: true });
+  window.addEventListener("resize", scheduleScrollScenes, { passive: true });
+  if (window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches && heroScene) {
+    heroScene.addEventListener("pointermove", function (event) {
+      var rect = heroScene.getBoundingClientRect();
+      pointerX = Math.max(-5, Math.min(5, ((event.clientX - rect.left) / Math.max(rect.width, 1) - 0.5) * 10));
+      pointerY = Math.max(-5, Math.min(5, ((event.clientY - rect.top) / Math.max(rect.height, 1) - 0.5) * 10));
+      scheduleScrollScenes();
+    }, { passive: true });
+    heroScene.addEventListener("pointerleave", function () { pointerX = 0; pointerY = 0; scheduleScrollScenes(); });
+  }
+  scheduleScrollScenes();
   if (window.ScrollCraft && typeof window.ScrollCraft.mount === "function") {
     try { window.ScrollCraft.mount(body); }
     catch (error) { body.dataset.scrollcraft = "error"; }
