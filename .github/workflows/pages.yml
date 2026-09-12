@@ -1,10 +1,12 @@
-name: Deploy Static Site to GitHub Pages
+name: Retire GitHub Pages Site
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+    inputs:
+      target_url:
+        description: Verified Netlify site root, including https://
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -16,7 +18,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  deploy:
+  redirect:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -25,26 +27,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare static artifact
-        run: |
-          mkdir -p public/assets public/case
-          cp index.html styles.css script.js robots.txt sitemap.xml public/
-          # Only ship referenced assets — skip the source PNG and OG template.
-          cp assets/audit-checklist.pdf \
-             assets/audit-checklist.html \
-             assets/og-image.png \
-             assets/outreach-hero.webp \
-             assets/outreach-hero.jpg \
-             public/assets/
-          # Publish every case study HTML except files starting with `_`
-          # (the master template stays in the repo, never ships).
-          shopt -s nullglob
-          for f in case/*.html; do
-            name=$(basename "$f")
-            if [[ "$name" != _* ]]; then
-              cp "$f" "public/case/$name"
-            fi
-          done
+      - name: Build redirect artifact
+        env:
+          TARGET_URL: ${{ inputs.target_url }}
+        run: npm run build:github-pages-redirect -- --target "$TARGET_URL"
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -52,7 +38,7 @@ jobs:
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: public
+          path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
