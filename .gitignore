@@ -4,6 +4,9 @@ node_modules/
 .playwright-cli/
 .playwright-mcp/
 output/
+dist/
+.netlify/
+scrollcraft/
 leads/
 hero-after.png
 v*-*.png
