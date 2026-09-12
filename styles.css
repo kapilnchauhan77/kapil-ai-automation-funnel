@@ -297,6 +297,25 @@ html:has(body[data-motion="reduced"]) { scroll-behavior: auto; }
 }
 
 /* Scroll scenes: each section owns one restrained movement idea. */
+.project-media--system {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.4rem;
+  aspect-ratio: auto;
+  min-height: clamp(20rem, 30vw, 28rem);
+  padding: clamp(1.5rem, 3.2vw, 3.5rem);
+  color: var(--white);
+  background: var(--carbon);
+}
+.project--wide .project-media--system { aspect-ratio: auto; }
+.project-media--system .system-title { margin: 0; max-width: 14ch; font: 700 clamp(1.8rem, 3vw, 3.2rem)/1.08 var(--display); letter-spacing: -.035em; }
+.system-kicker, .system-tag { color: #c5d1dc; font-size: .85rem; }
+.system-line { padding-block: 1.2rem; border-block: 1px solid #52616d; color: #dce5ff; font-size: clamp(1rem, 1.5vw, 1.3rem); }
+.project-media--system p { margin: 0; color: #c5d1dc; }
+.project-media--system ul { display: grid; gap: .7rem; margin: 0; padding-left: 1.15rem; color: #dce5ff; }
+.work-more > div { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem 1.5rem; }
+.work-more > div a, .work-more > div a + a { padding: .6rem 0; border-right: 0; border-bottom: 1px solid var(--line); }
 .site-header::before { content: ""; position: absolute; z-index: -1; inset: 0; background: var(--paper); box-shadow: 0 0 0 100vmax var(--paper); clip-path: inset(0 -100vmax); }
 .section { scroll-margin-top: 5.5rem; }
 .hero[data-scroll-scene="hero"] {
@@ -401,6 +420,7 @@ body:not(.has-js) .route-progress path,
 body[data-motion="reduced"] .route-progress path { stroke-dashoffset: 0; transition: none; }
 
 @media (max-width: 780px) {
+  .work-more > div { grid-template-columns: 1fr; }
   .site-header { position: relative; }
   .section { scroll-margin-top: 0; }
   .hero[data-scroll-scene="hero"] { min-height: auto; padding-block: 4.5rem 6rem; }
