@@ -1,5 +1,4 @@
-/case /case/ 301!
-/case/ /case/index.html 200
+# Netlify serves case/index.html at /case/ and normalizes the directory URL.
 /case/procys /case/procys.html 200
 /case/openprovider /case/openprovider.html 200
 /case/kore-labs /case/kore-labs.html 200

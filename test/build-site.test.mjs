@@ -57,3 +57,14 @@ test("redirect target validation rejects unsafe targets", () => {
     assert.throws(() => normalizeNetlifyTarget(target), /valid URL|HTTPS netlify\.app site root/);
   }
 });
+
+
+test("Netlify redirects do not redirect a normalized path to itself", async () => {
+  const rules = await readFile(join(root, "_redirects"), "utf8");
+  const normalize = (path) => path.replace(/\/+$/, "") || "/";
+  for (const line of rules.split("\n")) {
+    if (!line.trim() || line.startsWith("#")) continue;
+    const [source, target, status] = line.trim().split(/\s+/);
+    if (status.startsWith("3")) assert.notEqual(normalize(source), normalize(target));
+  }
+});
