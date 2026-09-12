@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-labelledby="title desc">
+  <title id="title">Production AI systems</title>
+  <desc id="desc">A capability diagram connecting source knowledge, an LLM agent and permissioned tools, with evaluation, deployment and monitoring supporting the system.</desc>
+  <rect width="1280" height="720" fill="#172029"/>
+  <g font-family="Arial, sans-serif">
+    <text x="72" y="106" fill="#ffffff" font-size="42" font-weight="700" letter-spacing="-1">Production AI systems</text>
+    <text x="72" y="153" fill="#b7c5d2" font-size="23">The model is one part of the product.</text>
+    <path d="M354 327H445M819 327H910" stroke="#89a6ff" stroke-width="3" fill="none"/>
+    <path d="M433 320L445 327L433 334M898 320L910 327L898 334" stroke="#89a6ff" stroke-width="3" fill="none"/>
+    <rect x="72" y="235" width="282" height="185" rx="8" fill="#243440"/>
+    <text x="102" y="291" fill="#ffffff" font-size="28" font-weight="700">Source knowledge</text>
+    <text x="102" y="344" fill="#c5d1dc" font-size="22">Documents &amp; data</text>
+    <text x="102" y="379" fill="#c5d1dc" font-size="22">Retrieval &amp; context</text>
+    <rect x="445" y="213" width="374" height="229" rx="8" fill="#234ee8"/>
+    <text x="483" y="284" fill="#ffffff" font-size="38" font-weight="700">LLM agent</text>
+    <text x="483" y="338" fill="#ffffff" font-size="23">Model selection</text>
+    <text x="483" y="377" fill="#ffffff" font-size="23">Orchestration &amp; tool calls</text>
+    <rect x="910" y="235" width="298" height="185" rx="8" fill="#243440"/>
+    <text x="940" y="291" fill="#ffffff" font-size="28" font-weight="700">Connected tools</text>
+    <text x="940" y="344" fill="#c5d1dc" font-size="22">APIs &amp; MCP</text>
+    <text x="940" y="379" fill="#c5d1dc" font-size="22">Permissioned execution</text>
+    <path d="M632 443V502M214 420V534H1059V420" stroke="#627888" stroke-width="2" fill="none"/>
+    <rect x="467" y="502" width="330" height="63" rx="6" fill="#172029" stroke="#627888"/>
+    <text x="632" y="543" text-anchor="middle" fill="#ffffff" font-size="23">Evaluate · Deploy · Monitor</text>
+    <path d="M72 620H1208" stroke="#3f5260"/>
+    <text x="72" y="670" fill="#b7c5d2" font-size="21">Kapil Chauhan</text>
+    <text x="1208" y="670" text-anchor="end" fill="#b7c5d2" font-size="21">AI engineering &amp; architecture</text>
+  </g>
+</svg>

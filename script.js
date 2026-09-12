@@ -67,19 +67,19 @@
   var briefStatus = doc.querySelector("#briefStatus");
   var downloadBrief = doc.querySelector("#downloadBrief");
   var emailBrief = doc.querySelector("#emailBrief");
-  var goalOptions = { website: ["Launch a business website", "Improve an existing website", "Build a web product"], automation: ["Automate document processing", "Connect business tools", "Build an AI assistant"] };
+  var goalOptions = { website: ["Launch a business website", "Improve an existing website", "Build a web product"], automation: ["Build a production AI assistant", "Automate document processing", "Productionize an AI workflow"] };
   var goalSummaries = {
     "Launch a business website": "A clear, responsive site that gives your offer a useful home and a direct next step.",
     "Improve an existing website": "A focused review and rebuild of the parts of your site that should work harder.",
     "Build a web product": "A practical web product shaped around the first useful workflow and a path to release.",
-    "Automate document processing": "A workflow that moves documents through extraction, review, and the right business system.",
-    "Connect business tools": "A connected workflow that removes repeated handoffs between the tools your team already uses.",
-    "Build an AI assistant": "An assistant focused on a real team task, its source material, and a safe handoff."
+    "Build a production AI assistant": "An assistant grounded in approved sources and connected to tools with clear handoffs.",
+    "Automate document processing": "A workflow that covers extraction, review, and business-system routing.",
+    "Productionize an AI workflow": "A workflow shaped around evaluation, deployment, monitoring, and operating safeguards."
   };
-  var routeLabels = { website: ["Shape", "Design", "Build", "Launch"], automation: ["Map", "Connect", "Test", "Roll out"] };
+  var routeLabels = { website: ["Shape", "Design", "Build", "Launch"], automation: ["Discover", "Architect", "Evaluate", "Deploy"] };
   function selectedTrack() {
     var checked = Array.prototype.find.call(trackInputs, function (input) { return input.checked; });
-    return checked && checked.value === "automation" ? "automation" : "website";
+    return checked && checked.value === "website" ? "website" : "automation";
   }
   function selectedValue(select, fallback) { return select && select.value ? select.value : fallback; }
   function updateChoiceStates(track) {
@@ -92,7 +92,7 @@
     });
   }
   function setTrack(track) {
-    var safeTrack = track === "automation" ? "automation" : "website";
+    var safeTrack = track === "website" ? "website" : "automation";
     trackInputs.forEach(function (input) { input.checked = input.value === safeTrack; });
     if (goalSelect) {
       var current = goalSelect.value; while (goalSelect.firstChild) goalSelect.removeChild(goalSelect.firstChild);
@@ -102,7 +102,7 @@
     updateChoiceStates(safeTrack); updateBrief();
   }
   function briefText() {
-    var track = selectedTrack(); var trackLabel = track === "automation" ? "AI automation" : "Website development";
+    var track = selectedTrack(); var trackLabel = track === "automation" ? "AI system or agent" : "Website development";
     var goal = selectedValue(goalSelect, goalOptions[track][0]); var context = contextInput ? contextInput.value.trim() : "";
     var budget = selectedValue(budgetSelect, "Let’s scope it first"); var timeline = selectedValue(timelineSelect, "Flexible");
     return ["Project brief", "============", "Track: " + trackLabel, "Goal: " + goal, "Budget: " + budget, "Timeline: " + timeline, "", "Context:", context || "No context added yet.", "", "Suggested next step:", "Share this brief with Kapil so the first conversation can focus on scope, constraints, and a useful starting point."].join("\n");
@@ -110,7 +110,7 @@
   function updateBrief() {
     if (!brief) return;
     var track = selectedTrack(); var goal = selectedValue(goalSelect, goalOptions[track][0]);
-    if (briefTitle) briefTitle.textContent = track === "automation" ? "Shape an automation project" : "Shape a website project";
+    if (briefTitle) briefTitle.textContent = track === "automation" ? "Shape an AI system" : "Shape a website project";
     if (briefSummary) briefSummary.textContent = goalSummaries[goal] || "A focused project shaped around your next useful outcome.";
     if (briefPreview) briefPreview.textContent = briefText();
     if (briefRoute) briefRoute.querySelectorAll(".route-node").forEach(function (node, index) { node.textContent = routeLabels[track][index] || routeLabels[track][routeLabels[track].length - 1]; });
