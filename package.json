@@ -2,9 +2,10 @@
   "name": "kapil-chauhan-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Kapil Chauhan's website development and AI automation portfolio.",
+  "description": "Kapil Chauhan's AI engineering and automation consulting portfolio.",
   "main": "server.js",
   "scripts": {
+    "test": "node --test test/*.test.mjs",
     "start": "node server.js",
     "dev": "node server.js",
     "build": "node scripts/build-site.mjs",

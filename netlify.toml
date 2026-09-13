@@ -2,6 +2,10 @@
   command = "npm run build"
   publish = "dist"
 
+# Keep links aligned with the canonical .html case URLs.
+[build.processing.html]
+  pretty_urls = false
+
 [[headers]]
   for = "/*"
   [headers.values]

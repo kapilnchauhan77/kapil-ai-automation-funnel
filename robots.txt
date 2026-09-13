@@ -1,3 +1,6 @@
+# Public portfolio pages are available to search engines and AI search crawlers.
+# This includes Googlebot, Bingbot, OAI-SearchBot and other compliant crawlers.
 User-agent: *
 Allow: /
+
 Sitemap: https://kapilchauhan.netlify.app/sitemap.xml

@@ -147,7 +147,6 @@ function redirectDocument(target, title) {
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="noindex, follow">
     <meta http-equiv="refresh" content="0; url=${escapedTarget}">
     <link rel="canonical" href="${escapedTarget}">
     <title>${title}</title>
@@ -169,7 +168,7 @@ export async function buildGithubPagesRedirect(rawTarget) {
   await Promise.all([
     writeFile(join(outputDirectory, "index.html"), redirectDocument(target, "Kapil Chauhan portfolio")),
     writeFile(join(outputDirectory, "404.html"), redirectDocument(target, "Portfolio moved")),
-    writeFile(join(outputDirectory, "robots.txt"), "User-agent: *\nDisallow: /\n"),
+    writeFile(join(outputDirectory, "robots.txt"), "User-agent: *\nAllow: /\n"),
     ...CASE_PAGES.map((page) =>
       writeFile(
         join(outputDirectory, "case", page.file),

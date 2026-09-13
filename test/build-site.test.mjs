@@ -37,7 +37,11 @@ test("regular build copies exactly the allowlisted case pages", async () => {
 test("GitHub Pages redirects preserve each matching Netlify case path", async () => {
   const target = "https://example.netlify.app/";
   await buildGithubPagesRedirect(target);
+  const robots = await readFile(join(output, "robots.txt"), "utf8");
+  assert.match(robots, /Allow: \//);
+  assert.doesNotMatch(robots, /Disallow/);
   const index = await readFile(join(output, "case", "index.html"), "utf8");
+  assert.doesNotMatch(index, /noindex/);
   assert.match(index, /https:\/\/example\.netlify\.app\/case\//);
   for (const file of caseFiles.slice(1)) {
     const page = await readFile(join(output, "case", file), "utf8");
