@@ -510,3 +510,12 @@ body:has(.case) > .site-footer, body:has(.case-index) > .site-footer { width: 10
 .hero-proof a:hover strong { text-decoration: underline; text-underline-offset: .2em; }
 .project-media--clinical { background: #193e40; }
 @media (max-width: 420px) { .hero-proof { grid-template-columns: 1fr; gap: 1rem; } }
+
+/* Real product screenshots. */
+a.project-media { display: block; }
+.project--wide .project-media--product { aspect-ratio: 4 / 3; }
+.project-media--product img, .hero-shot--main img { object-position: top; }
+.case-figure { margin: 0 0 clamp(3rem, 6vw, 6rem); }
+.case-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+.case-figure--portrait { max-width: 850px; margin-left: auto; }
+.case-figure figcaption { max-width: 850px; margin: .75rem 0 0 auto; color: var(--carbon-soft); font-size: .8rem; line-height: 1.5; }
