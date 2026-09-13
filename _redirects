@@ -1,12 +1,15 @@
+# Canonical URLs. Forced redirects prevent duplicate HTML pages.
+/index.html / 301!
+/case/index.html /case/ 301!
 # Netlify serves case/index.html at /case/ and normalizes the directory URL.
-/case/procys /case/procys.html 200
-/case/openprovider /case/openprovider.html 200
-/case/kore-labs /case/kore-labs.html 200
-/case/laurastar /case/laurastar.html 200
-/case/profinda /case/profinda.html 200
-/case/shopsavvy /case/shopsavvy.html 200
-/case/people-element /case/people-element.html 200
-/case/shamrock-marketing /case/shamrock-marketing.html 200
-/case/sai-global /case/sai-global.html 200
-/case/trialhaus /case/trialhaus.html 200
-/case/martek-global /case/martek-global.html 200
+/case/procys /case/procys.html 301!
+/case/openprovider /case/openprovider.html 301!
+/case/kore-labs /case/kore-labs.html 301!
+/case/laurastar /case/laurastar.html 301!
+/case/profinda /case/profinda.html 301!
+/case/shopsavvy /case/shopsavvy.html 301!
+/case/people-element /case/people-element.html 301!
+/case/shamrock-marketing /case/shamrock-marketing.html 301!
+/case/sai-global /case/sai-global.html 301!
+/case/trialhaus /case/trialhaus.html 301!
+/case/martek-global /case/martek-global.html 301!
