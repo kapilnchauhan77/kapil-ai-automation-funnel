@@ -519,3 +519,19 @@ a.project-media { display: block; }
 .case-figure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
 .case-figure--portrait { max-width: 850px; margin-left: auto; }
 .case-figure figcaption { max-width: 850px; margin: .75rem 0 0 auto; color: var(--carbon-soft); font-size: .8rem; line-height: 1.5; }
+
+/* Keep AMIE's report foremost and uncropped. */
+.hero-stage .hero-scene--report { height: auto; min-height: 0; aspect-ratio: 4 / 3; }
+.hero-scene--report .hero-shot--main { left: 8%; top: 6%; width: 76%; z-index: 4; aspect-ratio: auto; }
+.hero-scene--report .hero-shot--main img { display: block; height: auto; }
+.hero-scene--report .hero-shot--main figcaption { display: flex; justify-content: space-between; gap: 1rem; padding: .8rem 1rem; background: #102e30; color: #fff; font: 500 .6rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .04em; }
+.hero-scene--report .hero-shot--front { right: -1%; bottom: 0; z-index: 2; }
+.hero-scene--report .hero-shot--back { top: 0; right: 0; }
+.project--wide .project-media--product { aspect-ratio: 2352 / 1966; }
+
+.case-figure--report { max-width: 850px; margin-inline: auto; }
+@media (max-width: 780px) {
+  .hero-stage .hero-scene--report { aspect-ratio: 1.2 / 1; }
+  .hero-scene--report .hero-shot--main { left: 4%; width: 84%; }
+  .hero-scene--report .hero-shot--main figcaption { padding: .6rem .65rem; font-size: .5rem; }
+}
