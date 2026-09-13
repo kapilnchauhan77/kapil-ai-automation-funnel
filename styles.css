@@ -501,3 +501,12 @@ body:has(.case) > .site-footer, body:has(.case-index) > .site-footer { width: 10
 }
 
 .case-title em, .case-index-title em { color: var(--cobalt); font-style: normal; }
+
+/* Flagship production outcomes. */
+.hero-proof { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--line, #cbd2d8); }
+.hero-proof a { display: grid; gap: .4rem; text-decoration: none; }
+.hero-proof strong { font-size: clamp(1rem, 1.6vw, 1.4rem); letter-spacing: -.03em; }
+.hero-proof span { font-size: .85rem; line-height: 1.5; color: var(--muted, #53606b); }
+.hero-proof a:hover strong { text-decoration: underline; text-underline-offset: .2em; }
+.project-media--clinical { background: #193e40; }
+@media (max-width: 420px) { .hero-proof { grid-template-columns: 1fr; gap: 1rem; } }

@@ -12,6 +12,8 @@ const root = new URL("../", import.meta.url).pathname;
 const output = join(root, "dist");
 const caseFiles = [
   "index.html",
+  "inperio.html",
+  "arogya.html",
   "procys.html",
   "openprovider.html",
   "kore-labs.html",
