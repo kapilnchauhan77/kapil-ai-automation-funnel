@@ -9,7 +9,7 @@ const read = path => readFile(new URL(path, root), 'utf8');
 test('sitemap pages have unique metadata, canonical URLs and linked structured data', async () => {
   const sitemap = await read('sitemap.xml');
   const urls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
-  assert.equal(urls.length, 13);
+  assert.equal(urls.length, 15);
   assert.equal(new Set(urls).size, urls.length);
   const titles = new Set();
   const descriptions = new Set();

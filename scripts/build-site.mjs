@@ -24,6 +24,8 @@ const SITE_FILES = [
 
 const CASE_PAGES = [
   { slug: "index", file: "index.html" },
+  { slug: "inperio", file: "inperio.html" },
+  { slug: "arogya", file: "arogya.html" },
   { slug: "procys", file: "procys.html" },
   { slug: "openprovider", file: "openprovider.html" },
   { slug: "kore-labs", file: "kore-labs.html" },
