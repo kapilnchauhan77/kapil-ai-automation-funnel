@@ -527,3 +527,20 @@ a.project-media { display: block; }
 .hero-scene--products .hero-shot--back { top: 0; right: 0; width: 66%; aspect-ratio: 1840 / 854; }
 .project--wide .project-media--product { aspect-ratio: 1840 / 854; }
 .case-figure--report { max-width: 850px; margin-inline: auto; }
+
+/* Screenshot gallery for the additional projects. */
+.work-more.work-more--gallery { display: block; padding-top: 2rem; }
+.work-more--gallery h3 { margin-bottom: 1.5rem; font-size: 1.2rem; }
+.work-more--gallery > .workshop-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem 1.5rem; }
+.work-more--gallery > .workshop-grid > a { display: block; min-width: 0; padding: 0; border: 0; }
+.workshop-image { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; background: var(--surface); border: 1px solid var(--line); }
+.workshop-caption { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+.workshop-caption strong { font-size: 1rem; }
+.workshop-caption span { text-align: right; }
+.workshop-grid > a:hover .workshop-image { border-color: var(--cobalt); }
+@media (max-width: 1000px) {
+  .work-more--gallery > .workshop-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 600px) {
+  .work-more--gallery > .workshop-grid { grid-template-columns: 1fr; }
+}
