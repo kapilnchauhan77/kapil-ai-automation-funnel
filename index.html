@@ -229,8 +229,21 @@ Budget: Let's scope it first
 Timing: Flexible
 
 First conversation: the workflow, source material, model choice and the path to production.</pre>
-          <div class="brief-actions"><button class="button button-primary" id="downloadBrief" type="button" disabled>Download brief <span aria-hidden="true">↓</span></button><a class="text-link" id="emailBrief" href="mailto:kapilnchauhan77@gmail.com?subject=AI%20project&amp;body=Project%20brief%0ATrack%3A%20AI%20automation%0AGoal%3A%20Build%20a%20production%20AI%20assistant">Email this brief <span aria-hidden="true">↗</span></a></div>
-          <p class="form-note" id="briefStatus" role="status">Email opens a draft for you to review and send.</p>
+          <div class="brief-actions"><button class="button button-primary" id="downloadBrief" type="button" disabled>Download brief <span aria-hidden="true">↓</span></button><button class="button brief-email-toggle" id="emailBrief" type="button" aria-expanded="false" aria-controls="briefEmailOptions" disabled>Email this brief <span aria-hidden="true">↓</span></button></div>
+          <div class="brief-email-options" id="briefEmailOptions" hidden>
+            <p>Send to <strong>kapilnchauhan77@gmail.com</strong></p>
+            <div class="brief-actions">
+              <a class="button brief-email-option" id="gmailBrief" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=kapilnchauhan77%40gmail.com" target="_blank" rel="noopener noreferrer">Open Gmail <span aria-hidden="true">↗</span></a>
+              <a class="button brief-email-option" id="mailAppBrief" href="mailto:kapilnchauhan77@gmail.com">Open email app <span aria-hidden="true">↗</span></a>
+              <button class="button brief-email-option" id="copyBrief" type="button">Copy brief</button>
+            </div>
+            <p class="form-note">Review your draft, then send it. If no draft opens, copy the brief into your email.</p>
+            <div id="briefCopyFallback" hidden>
+              <label for="briefCopyText">Select and copy your brief</label>
+              <textarea id="briefCopyText" class="brief-copy-text" rows="8" readonly></textarea>
+            </div>
+          </div>
+          <p class="form-note" id="briefStatus" role="status">Choose an email option to prepare your draft. Nothing is sent automatically.</p>
         </div>
       </div>
     </section>

@@ -15,5 +15,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemailer": "^8.0.7"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1"
   }
 }
