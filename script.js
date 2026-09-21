@@ -67,6 +67,12 @@
   var briefStatus = doc.querySelector("#briefStatus");
   var downloadBrief = doc.querySelector("#downloadBrief");
   var emailBrief = doc.querySelector("#emailBrief");
+  var briefEmailOptions = doc.querySelector("#briefEmailOptions");
+  var gmailBrief = doc.querySelector("#gmailBrief");
+  var mailAppBrief = doc.querySelector("#mailAppBrief");
+  var copyBrief = doc.querySelector("#copyBrief");
+  var briefCopyFallback = doc.querySelector("#briefCopyFallback");
+  var briefCopyText = doc.querySelector("#briefCopyText");
   var goalOptions = { website: ["Launch a business website", "Improve an existing website", "Build a web product"], automation: ["Build a production AI assistant", "Automate document processing", "Productionize an AI workflow"] };
   var goalSummaries = {
     "Launch a business website": "A clear, responsive site that gives your offer a useful home and a direct next step.",
@@ -114,10 +120,16 @@
     if (briefSummary) briefSummary.textContent = goalSummaries[goal] || "A focused project shaped around your next useful outcome.";
     if (briefPreview) briefPreview.textContent = briefText();
     if (briefRoute) briefRoute.querySelectorAll(".route-node").forEach(function (node, index) { node.textContent = routeLabels[track][index] || routeLabels[track][routeLabels[track].length - 1]; });
-    if (emailBrief) emailBrief.href = "mailto:kapilnchauhan77@gmail.com?subject=" + encodeURIComponent("Project brief: " + goal) + "&body=" + encodeURIComponent(briefText());
+    var subject = encodeURIComponent("Project brief: " + goal);
+    var content = encodeURIComponent(briefText());
+    if (mailAppBrief) mailAppBrief.href = "mailto:kapilnchauhan77@gmail.com?subject=" + subject + "&body=" + content;
+    if (gmailBrief) gmailBrief.href = "https://mail.google.com/mail/?view=cm&fs=1&to=kapilnchauhan77%40gmail.com&su=" + subject + "&body=" + content;
+    if (briefCopyText) briefCopyText.value = briefText();
+    if (briefStatus) briefStatus.textContent = "Your current brief is ready. Choose an email option or copy it into your email.";
   }
   if (brief) {
     if (downloadBrief) downloadBrief.disabled = false;
+    if (emailBrief) emailBrief.disabled = false;
     trackInputs.forEach(function (input) { input.addEventListener("change", function () { setTrack(input.value); }); });
     [goalSelect, contextInput, budgetSelect, timelineSelect].forEach(function (field) { if (field) field.addEventListener(field.tagName === "TEXTAREA" ? "input" : "change", updateBrief); });
     brief.addEventListener("submit", function (event) { event.preventDefault(); updateBrief(); if (briefStatus) briefStatus.textContent = "Your brief is ready to download or carry into an email."; });
@@ -135,6 +147,31 @@
       var file = new Blob([briefText()], { type: "text/plain;charset=utf-8" }); var url = URL.createObjectURL(file); var link = doc.createElement("a");
       link.href = url; link.download = "kapil-project-brief.txt"; doc.body.appendChild(link); link.click(); link.remove(); window.setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
       if (briefStatus) briefStatus.textContent = "Download started: kapil-project-brief.txt.";
+    });
+  }
+
+  if (emailBrief && briefEmailOptions) {
+    emailBrief.addEventListener("click", function () {
+      briefEmailOptions.hidden = !briefEmailOptions.hidden;
+      emailBrief.setAttribute("aria-expanded", String(!briefEmailOptions.hidden));
+    });
+  }
+  if (copyBrief) {
+    copyBrief.addEventListener("click", async function () {
+      var text = briefText();
+      try {
+        await navigator.clipboard.writeText(text);
+        if (briefCopyFallback) briefCopyFallback.hidden = true;
+        if (briefStatus) briefStatus.textContent = "Brief copied. Paste it into an email to kapilnchauhan77@gmail.com, then review and send.";
+      } catch (error) {
+        if (briefCopyFallback && briefCopyText) {
+          briefCopyFallback.hidden = false;
+          briefCopyText.value = briefText();
+          briefCopyText.focus();
+          briefCopyText.select();
+        }
+        if (briefStatus) briefStatus.textContent = "Automatic copying is unavailable. Copy the selected text below the email options and paste it into your email.";
+      }
     });
   }
 
